@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cô Tuyết Tsmartkids — Đào tạo giáo viên tiền tiểu học thu hút - 0335.822.660 | Sơ Đồ Tách Gộp Số 8</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Nunito', 'Inter', sans-serif;
+      background: linear-gradient(180deg, #FFFBEB 0%, #FEF3C7 42%, #E0F2FE 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes shakeGentle {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-7px); }
+      40% { transform: translateX(7px); }
+      60% { transform: translateX(-5px); }
+      80% { transform: translateX(5px); }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.82); opacity: 0; }
+      70% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes starFly {
+      0% { transform: translateY(0) scale(0.6) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-90px) scale(1.3) rotate(180deg); opacity: 0; }
+    }
+
+    @keyframes pulseSpeak {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.45); }
+      50% { transform: scale(1.04); box-shadow: 0 0 0 8px rgba(14, 165, 233, 0); }
+    }
+
+    .animate-float { animation: floatSlow 3s ease-in-out infinite; }
+    .animate-shake { animation: shakeGentle 0.45s ease-in-out; }
+    .animate-pop { animation: popIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .speaking-pulse { animation: pulseSpeak 1s ease-in-out infinite; }
+
+    .star-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 60;
+      animation: starFly 1s ease-out forwards;
+    }
+
+    .num-tile {
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      cursor: grab;
+      touch-action: manipulation;
+    }
+    .num-tile:hover { transform: translateY(-3px) scale(1.05); }
+    .num-tile:active { cursor: grabbing; transform: scale(0.95); }
+
+    .bond-slot {
+      transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .bond-slot.drag-over {
+      transform: scale(1.08);
+      background-color: #FEF9C3 !important;
+      border-color: #F59E0B !important;
+    }
+
+    .btn-3d { transition: transform 0.12s ease, box-shadow 0.12s ease; }
+    .btn-3d:active { transform: translateY(3px); }
+  </style>
+</head>
+<body class="text-slate-800 antialiased">
+  <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-50 w-full h-full"></canvas>
+
+  <div id="app" class="max-w-3xl mx-auto px-3 sm:px-6 py-4 sm:py-6 min-h-screen flex flex-col">
+
+    <!-- Top Header -->
+    <header class="flex items-center justify-between gap-2 mb-4">
+      <button id="btn-home-top" type="button" class="hidden items-center gap-1.5 bg-white/90 hover:bg-white border-2 border-amber-200 text-amber-800 font-extrabold px-3 py-2 rounded-2xl shadow-sm text-sm sm:text-base btn-3d">
+        <span>🏠</span>
+        <span class="hidden sm:inline">Trang chủ</span>
+      </button>
+
+      <div id="header-brand" class="flex items-center gap-2 bg-white/95 border-2 border-amber-300 px-3 sm:px-4 py-1.5 rounded-2xl shadow-xs text-left">
+        <span class="text-xl sm:text-2xl shrink-0">🌟</span>
+        <div class="leading-tight">
+          <div class="font-black text-xs sm:text-base text-amber-700 tracking-tight">Cô Tuyết Tsmartkids</div>
+          <div class="font-extrabold text-[10px] sm:text-xs text-slate-600">Đào tạo giáo viên tiền tiểu học thu hút - 0335.822.660</div>
+        </div>
+      </div>
+
+      <button id="btn-sound" type="button" class="flex items-center gap-1.5 bg-white/90 hover:bg-white border-2 border-sky-200 text-sky-700 font-extrabold px-3 py-2 rounded-2xl shadow-sm text-sm sm:text-base btn-3d" aria-label="Bật hoặc tắt âm thanh">
+        <span id="sound-icon">🔊</span>
+        <span id="sound-label" class="text-xs sm:text-sm">Âm thanh: Bật</span>
+      </button>
+    </header>
+
+    <!-- VIEW 1: HOME SCREEN -->
+    <main id="view-home" class="flex-1 flex flex-col items-center justify-center text-center py-4">
+      <div class="bg-white/95 border-4 border-amber-300 rounded-3xl p-6 sm:p-10 shadow-xl w-full max-w-xl animate-pop">
+        <div class="flex justify-center mb-4 animate-float">
+          <div class="flex flex-col items-center">
+            <div class="w-14 h-14 rounded-full bg-amber-400 text-white font-black text-3xl flex items-center justify-center shadow-md border-4 border-white">8</div>
+            <svg viewBox="0 0 120 32" class="w-28 h-7 -my-1" fill="none" aria-hidden="true">
+              <path d="M60 2 L24 30" stroke="#F59E0B" stroke-width="4" stroke-linecap="round"/>
+              <path d="M60 2 L96 30" stroke="#0EA5E9" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+            <div class="flex gap-8">
+              <div class="w-11 h-11 rounded-full bg-emerald-400 text-white font-black text-2xl flex items-center justify-center shadow-md border-4 border-white">3</div>
+              <div class="w-11 h-11 rounded-full bg-sky-400 text-white font-black text-2xl flex items-center justify-center shadow-md border-4 border-white">5</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="inline-flex flex-wrap items-center justify-center gap-1.5 bg-gradient-to-r from-amber-100 via-yellow-100 to-emerald-100 text-amber-800 font-black text-xs sm:text-sm px-4 py-1.5 rounded-full mb-3 border-2 border-amber-300 shadow-xs">
+          <span>🎓</span>
+          <span>Cô Tuyết Tsmartkids • Đào tạo giáo viên tiền tiểu học thu hút - 0335.822.660</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl font-black text-amber-600 mb-3 leading-tight">
+          Sơ Đồ Tách – Gộp Số 8
+        </h1>
+
+        <p class="text-slate-600 font-bold text-base sm:text-lg mb-6 leading-relaxed">
+          Bé hãy chinh phục đủ 4 cặp tách – gộp của <strong>số 8</strong> qua sơ đồ số thông minh với 2 vòng thử thách đầy hứng thú nhé!
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-7 text-left">
+          <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3.5 flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-amber-400 text-white font-black text-xl flex items-center justify-center shrink-0 shadow-sm">1</div>
+            <div>
+              <div class="font-black text-amber-800 text-sm sm:text-base">Vòng 1: Làm quen</div>
+              <div class="text-xs sm:text-sm font-bold text-amber-700/80">5 câu • Tách – Gộp số 8</div>
+            </div>
+          </div>
+          <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-3.5 flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-sky-500 text-white font-black text-xl flex items-center justify-center shrink-0 shadow-sm">2</div>
+            <div>
+              <div class="font-black text-sky-800 text-sm sm:text-base">Vòng 2: Thành thạo</div>
+              <div class="text-xs sm:text-sm font-bold text-sky-700/80">5 câu • Thử thách tách 2 nhánh</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <button id="btn-start" type="button" class="flex-1 bg-gradient-to-b from-emerald-400 to-emerald-500 hover:from-emerald-500 hover:to-emerald-600 text-white font-black text-xl px-6 py-4 rounded-2xl shadow-[0_5px_0_#059669] btn-3d flex items-center justify-center gap-2">
+            <span>▶️</span>
+            <span>Bắt đầu chơi</span>
+          </button>
+          <button id="btn-how-to" type="button" class="bg-gradient-to-b from-amber-300 to-amber-400 hover:from-amber-400 hover:to-amber-500 text-amber-950 font-black text-lg px-6 py-4 rounded-2xl shadow-[0_5px_0_#d97706] btn-3d flex items-center justify-center gap-2">
+            <span>💡</span>
+            <span>Cách chơi</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- VIEW 2: ROUND TRANSITION SCREEN -->
+    <section id="view-round-break" class="hidden flex-1 flex-col items-center justify-center text-center py-4">
+      <div class="bg-white border-4 border-sky-300 rounded-3xl p-6 sm:p-10 shadow-xl w-full max-w-lg animate-pop">
+        <div class="text-6xl mb-3 animate-float">🌟</div>
+        <h2 class="text-2xl sm:text-3xl font-black text-sky-600 mb-2">
+          Tuyệt vời! Con đã xong Vòng 1!
+        </h2>
+        <p class="text-slate-600 font-bold text-base sm:text-lg mb-5">
+          Con đang có <span id="break-score" class="text-amber-600 font-black">0</span> điểm. Bây giờ mình cùng bước vào <strong>Vòng 2: Thành thạo số 8</strong> nhé!
+        </p>
+        <button id="btn-continue-round2" type="button" class="w-full sm:w-auto bg-gradient-to-b from-sky-400 to-sky-500 hover:from-sky-500 hover:to-sky-600 text-white font-black text-xl px-8 py-4 rounded-2xl shadow-[0_5px_0_#0284c7] btn-3d">
+          Tiếp tục Vòng 2 🚀
+        </button>
+      </div>
+    </section>
+
+    <!-- VIEW 3: GAMEPLAY SCREEN -->
+    <section id="view-game" class="hidden flex-1 flex flex-col gap-3 sm:gap-4">
+      <div class="bg-white/95 border-2 border-amber-200 rounded-3xl p-3.5 sm:p-4 shadow-md">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+          <div class="flex items-center gap-2">
+            <span id="round-badge" class="bg-amber-100 text-amber-800 border border-amber-300 font-black text-xs sm:text-sm px-3 py-1 rounded-full">
+              Vòng 1: Số 8
+            </span>
+            <span id="question-counter" class="font-black text-slate-700 text-sm sm:text-base">
+              Câu 1 / 10
+            </span>
+          </div>
+
+          <div class="flex items-center gap-2 sm:gap-3">
+            <div class="bg-emerald-50 border border-emerald-200 text-emerald-700 font-black text-xs sm:text-sm px-3 py-1 rounded-full flex items-center gap-1">
+              <span>✅</span>
+              <span>Đúng: <span id="correct-count">0</span></span>
+            </div>
+            <div class="bg-amber-50 border border-amber-200 text-amber-700 font-black text-xs sm:text-sm px-3 py-1 rounded-full flex items-center gap-1">
+              <span>⭐</span>
+              <span>Điểm: <span id="score-count">0</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full h-4 bg-slate-100 rounded-full overflow-hidden border border-slate-200 p-0.5">
+          <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-400 via-orange-400 to-emerald-400 rounded-full transition-all duration-500" style="width: 10%"></div>
+        </div>
+      </div>
+
+      <div id="question-card" class="bg-white/95 border-4 border-amber-200 rounded-3xl p-4 sm:p-6 shadow-lg flex-1 flex flex-col justify-between gap-4">
+        <div class="text-center flex flex-col items-center">
+          <span id="mode-pill" class="inline-block text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-sky-100 text-sky-700 mb-2">
+            Sơ đồ Tách số
+          </span>
+          <h2 id="question-prompt" class="text-lg sm:text-2xl font-black text-slate-800 leading-snug max-w-xl">
+            Số 8 tách thành 1 và mấy?
+          </h2>
+          <div class="flex flex-col items-center justify-center gap-1 mt-2">
+            <button id="btn-read-question" type="button" class="inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white font-black text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_3px_0_#0284c7] btn-3d">
+              <span class="text-base">🔊</span>
+              <span>Nghe câu hỏi</span>
+            </button>
+            <p id="voice-status-note" class="hidden text-[11px] sm:text-xs font-bold text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">
+              Trình duyệt này chưa có sẵn giọng đọc Tiếng Việt — bạn mở bằng Google Chrome để nghe giọng đọc chuẩn nhé!
+            </p>
+          </div>
+          <p id="question-hint" class="text-xs sm:text-sm font-bold text-slate-500 mt-1.5">
+            Kéo hoặc chạm thẻ số đúng vào ô dấu hỏi (?) trên sơ đồ nhé!
+          </p>
+        </div>
+
+        <div id="interactive-stage" class="flex-1 flex flex-col justify-center items-center gap-4">
+          <!-- Populated by JS -->
+        </div>
+
+        <div id="feedback-area" class="min-h-[76px] flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 border-t-2 border-dashed border-slate-100">
+          <div id="feedback-box" class="flex-1 w-full rounded-2xl px-4 py-3 font-extrabold text-sm sm:text-base flex items-center gap-2.5 transition-all bg-slate-50 text-slate-600 border-2 border-slate-100">
+            <span id="feedback-emoji" class="text-2xl">🦊</span>
+            <span id="feedback-text">Con hãy điền số vào sơ đồ này nhé!</span>
+          </div>
+
+          <button id="btn-next" type="button" class="hidden w-full sm:w-auto shrink-0 bg-gradient-to-b from-emerald-400 to-emerald-500 hover:from-emerald-500 hover:to-emerald-600 text-white font-black text-lg px-7 py-3.5 rounded-2xl shadow-[0_4px_0_#059669] btn-3d animate-pop">
+            Tiếp theo ➜
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 4: SUMMARY SCREEN -->
+    <section id="view-summary" class="hidden flex-1 flex-col items-center justify-center text-center py-4">
+      <div class="bg-white/95 border-4 border-emerald-300 rounded-3xl p-5 sm:p-8 shadow-xl w-full max-w-2xl animate-pop">
+        <div class="inline-block bg-amber-100 text-amber-800 border border-amber-300 font-black text-xs sm:text-sm px-3.5 py-1 rounded-full mb-2">
+          🌟 Chứng nhận bé giỏi • Cô Tuyết Tsmartkids
+        </div>
+        <div class="text-5xl sm:text-6xl mb-2 animate-float">🏆</div>
+        <h2 class="text-2xl sm:text-3xl font-black text-emerald-600 mb-1.5">
+          Hoan hô con đã hoàn thành!
+        </h2>
+        <p id="summary-message" class="text-slate-600 font-bold text-sm sm:text-base mb-4">
+          Con đã nắm vững các sơ đồ tách – gộp số 8 rồi đó!
+        </p>
+
+        <div id="summary-stars" class="flex justify-center gap-2 text-3xl sm:text-4xl mb-4">
+          <span>⭐</span><span>⭐</span><span>⭐</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 mb-5 max-w-md mx-auto">
+          <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-3">
+            <div class="text-xs font-extrabold text-emerald-700 mb-0.5">Số câu đúng</div>
+            <div class="text-2xl font-black text-emerald-600"><span id="final-correct">0</span> / 10</div>
+          </div>
+          <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3">
+            <div class="text-xs font-extrabold text-amber-700 mb-0.5">Tổng điểm</div>
+            <div class="text-2xl font-black text-amber-600"><span id="final-score">0</span> ⭐</div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-sky-50 via-white to-amber-50 border-2 border-sky-200 rounded-2xl p-4 sm:p-5 text-left mb-6 shadow-xs">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-xl">📐</span>
+            <h3 class="font-black text-base sm:text-lg text-sky-800">Lời tổng kết &amp; Kết luận về phép tính số 8</h3>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+            <div class="bg-emerald-50/90 border border-emerald-200 rounded-xl p-3">
+              <div class="font-black text-emerald-800 text-sm mb-1.5">➕ Khi GỘP lại (Phép cộng):</div>
+              <div class="flex flex-wrap gap-1.5 text-xs sm:text-sm font-black text-emerald-700">
+                <span class="bg-white px-2.5 py-1 rounded-lg border border-emerald-200">1 + 7 = 8</span>
+                <span class="bg-white px-2.5 py-1 rounded-lg border border-emerald-200">2 + 6 = 8</span>
+                <span class="bg-white px-2.5 py-1 rounded-lg border border-emerald-200">3 + 5 = 8</span>
+                <span class="bg-white px-2.5 py-1 rounded-lg border border-emerald-200">4 + 4 = 8</span>
+              </div>
+            </div>
+
+            <div class="bg-amber-50/90 border border-amber-200 rounded-xl p-3">
+              <div class="font-black text-amber-800 text-sm mb-1.5">➖ Khi TÁCH ra (Phép trừ):</div>
+              <div class="flex flex-wrap gap-1.5 text-xs sm:text-sm font-black text-amber-700">
+                <span class="bg-white px-2.5 py-1 rounded-lg border border-amber-200">8 − 1 = 7</span>
+                <span class="bg-white px-2.5 py-1 rounded-lg border border-amber-200">8 − 2 = 6</span>
+                <span class="bg-white px-2.5 py-1 rounded-lg border border-amber-200">8 − 3 = 5</span>
+                <span class="bg-white px-2.5 py-1 rounded-lg border border-amber-200">8 − 4 = 4</span>
+              </div>
+            </div>
+          </div>
+
+          <p id="conclusion-voice-text" class="text-xs sm:text-sm font-extrabold text-sky-900 bg-sky-100/80 rounded-xl px-3.5 py-2.5 border border-sky-200">
+            💡 Ghi nhớ: Số 8 có 4 cách tách: (1 và 7), (2 và 6), (3 và 5), (4 và 4). Hai phần gộp lại luôn bằng 8!
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <button id="btn-replay" type="button" class="flex-1 bg-gradient-to-b from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-amber-950 font-black text-xl px-6 py-4 rounded-2xl shadow-[0_5px_0_#d97706] btn-3d">
+            🔄 Chơi lại
+          </button>
+          <button id="btn-summary-home" type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-black text-lg px-6 py-4 rounded-2xl border-2 border-slate-200 btn-3d">
+            🏠 Về trang chủ
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="text-center text-xs sm:text-sm font-extrabold text-amber-800/80 pt-4 pb-1">
+      © Cô Tuyết Tsmartkids • Đào tạo giáo viên tiền tiểu học thu hút - 0335.822.660
+    </footer>
+  </div>
+
+  <!-- HOW TO PLAY MODAL -->
+  <div id="modal-howto" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white border-4 border-amber-300 rounded-3xl max-w-md w-full p-6 shadow-2xl animate-pop relative">
+      <button id="btn-close-howto" type="button" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 font-black text-slate-600 flex items-center justify-center" aria-label="Đóng hướng dẫn">
+        ✕
+      </button>
+      <div class="text-center mb-4">
+        <div class="text-4xl mb-1">🔢</div>
+        <h3 class="text-2xl font-black text-amber-600">Cách chơi Sơ Đồ Số 8</h3>
+      </div>
+
+      <div class="space-y-3 text-sm sm:text-base font-bold text-slate-700">
+        <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3 flex items-start gap-3">
+          <span class="text-2xl shrink-0">⭕</span>
+          <div>
+            <div class="font-black text-amber-800">1. Quan sát Sơ đồ Tách – Gộp</div>
+            <p class="text-xs sm:text-sm text-slate-600">Ô tròn ở trên là <strong>Số tổng (8)</strong>, hai ô tròn ở dưới là <strong>hai phần</strong> tách ra từ 8.</p>
+          </div>
+        </div>
+        <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-3 flex items-start gap-3">
+          <span class="text-2xl shrink-0">✋</span>
+          <div>
+            <div class="font-black text-sky-800">2. Điền số vào ô dấu hỏi (?)</div>
+            <p class="text-xs sm:text-sm text-slate-600">Con kéo thẻ số thả vào ô <strong>?</strong> hoặc chạm thẳng vào thẻ số mình chọn.</p>
+          </div>
+        </div>
+        <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-3 flex items-start gap-3">
+          <span class="text-2xl shrink-0">📐</span>
+          <div>
+            <div class="font-black text-emerald-800">3. Tổng kết sơ đồ &amp; phép tính</div>
+            <p class="text-xs sm:text-sm text-slate-600">Mỗi câu đúng sẽ tổng kết lại sơ đồ số, và cuối trò chơi có bảng kết luận phép cộng, phép trừ số 8.</p>
+          </div>
+        </div>
+      </div>
+
+      <button id="btn-howto-play" type="button" class="mt-5 w-full bg-gradient-to-b from-emerald-400 to-emerald-500 text-white font-black text-lg py-3.5 rounded-2xl shadow-[0_4px_0_#059669] btn-3d">
+        Con hiểu rồi, chơi thôi! 🚀
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function makeBellWavUrl(freqs, durationSec = 0.32, volume = 0.65) {
+      const sampleRate = 22050;
+      const numSamples = Math.floor(sampleRate * durationSec);
+      const buffer = new ArrayBuffer(44 + numSamples * 2);
+      const view = new DataView(buffer);
+      const writeStr = (offset, str) => {
+        for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
+      };
+      writeStr(0, 'RIFF');
+      view.setUint32(4, 36 + numSamples * 2, true);
+      writeStr(8, 'WAVE');
+      writeStr(12, 'fmt ');
+      view.setUint32(16, 16, true);
+      view.setUint16(20, 1, true);
+      view.setUint16(22, 1, true);
+      view.setUint32(24, sampleRate, true);
+      view.setUint32(28, sampleRate * 2, true);
+      view.setUint16(32, 2, true);
+      view.setUint16(34, 16, true);
+      writeStr(36, 'data');
+      view.setUint32(40, numSamples * 2, true);
+
+      for (let i = 0; i < numSamples; i++) {
+        const t = i / sampleRate;
+        const env = Math.exp(-t * 9.5) * Math.min(1, t / 0.008);
+        let sample = 0;
+        freqs.forEach((f, idx) => {
+          sample += Math.sin(2 * Math.PI * f * t) * (1 / (idx + 1));
+        });
+        sample = Math.max(-1, Math.min(1, sample * 0.55 * volume * env));
+        view.setInt16(44 + i * 2, sample * 32767, true);
+      }
+      return URL.createObjectURL(new Blob([buffer], { type: 'audio/wav' }));
+    }
+
+    const WAV_SOUNDS = {
+      ting: makeBellWavUrl([1046.5, 1567.98, 2093.0], 0.34, 0.85),
+      pop: makeBellWavUrl([783.99, 1174.66], 0.24, 0.75),
+      ret: makeBellWavUrl([523.25, 392.0], 0.2, 0.65)
+    };
+
+    function playWav(url) {
+      try {
+        const a = new Audio(url);
+        a.volume = 0.9;
+        a.play().catch(() => {});
+      } catch (e) {}
+    }
+
+    const AudioFX = {
+      ctx: null,
+      muted: false,
+      lastTingAt: 0,
+      ensure() {
+        if (!this.ctx) {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (AudioCtx) this.ctx = new AudioCtx();
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          return this.ctx.resume().catch(() => {});
+        }
+        return Promise.resolve();
+      },
+      playTone(freq, duration, type = 'sine', startTimeOffset = 0, volume = 0.28) {
+        if (this.muted) return;
+        const ready = this.ensure();
+        if (!this.ctx) return;
+        const schedule = () => {
+          if (!this.ctx || this.muted) return;
+          const now = this.ctx.currentTime + startTimeOffset;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, now);
+          gain.gain.setValueAtTime(0.001, now);
+          gain.gain.exponentialRampToValueAtTime(volume, now + 0.015);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + duration + 0.02);
+        };
+        if (this.ctx.state === 'suspended') {
+          ready.then(schedule);
+        } else {
+          schedule();
+        }
+      },
+      click() {
+        if (this.muted) return;
+        playWav(WAV_SOUNDS.pop);
+      },
+      ting(debounced = false) {
+        if (this.muted) return;
+        const nowMs = Date.now();
+        if (debounced && nowMs - this.lastTingAt < 120) return;
+        this.lastTingAt = nowMs;
+        playWav(WAV_SOUNDS.ting);
+        this.playTone(1046.5, 0.22, 'sine', 0, 0.35);
+      },
+      pop(step = 0) {
+        if (this.muted) return;
+        playWav(WAV_SOUNDS.pop);
+        const scale = [587.33, 659.25, 783.99, 880.0, 987.77, 1046.5, 1174.66];
+        const base = scale[step % scale.length];
+        this.playTone(base, 0.16, 'triangle', 0, 0.3);
+      },
+      returnPop() {
+        if (this.muted) return;
+        playWav(WAV_SOUNDS.ret);
+      },
+      correct() {
+        this.playTone(523.25, 0.18, 'triangle', 0, 0.28);
+        this.playTone(659.25, 0.18, 'triangle', 0.1, 0.28);
+        this.playTone(783.99, 0.2, 'triangle', 0.2, 0.28);
+        this.playTone(1046.5, 0.4, 'triangle', 0.3, 0.32);
+      },
+      wrong() {
+        this.playTone(260, 0.18, 'sine', 0, 0.24);
+        this.playTone(210, 0.25, 'sine', 0.14, 0.22);
+      },
+      fanfare() {
+        const notes = [523.25, 659.25, 783.99, 1046.5, 783.99, 1046.5];
+        const times = [0, 0.12, 0.24, 0.36, 0.54, 0.68];
+        notes.forEach((n, i) => this.playTone(n, 0.28, 'triangle', times[i], 0.28));
+      }
+    };
+
+    const VoiceReader = {
+      cachedViVoice: null,
+      findVietnameseVoice() {
+        if (!('speechSynthesis' in window)) return null;
+        const voices = window.speechSynthesis.getVoices() || [];
+        if (voices.length === 0) return this.cachedViVoice;
+        const isVi = (v) => {
+          const lang = (v.lang || '').toLowerCase().replace('_', '-');
+          const name = (v.name || '').toLowerCase();
+          return lang === 'vi' || lang.startsWith('vi-') || /vietnam|tiếng việt|linh|hoài my|nam minh/.test(name);
+        };
+        const viVoices = voices.filter(isVi);
+        const preferred =
+          viVoices.find(v => /google|natural|online|linh|hoài my/i.test(v.name)) ||
+          viVoices[0] ||
+          null;
+        if (preferred) this.cachedViVoice = preferred;
+        return preferred;
+      },
+      stop() {
+        if ('speechSynthesis' in window) {
+          try { window.speechSynthesis.cancel(); } catch (e) {}
+        }
+        const btn = document.getElementById('btn-read-question');
+        if (btn) btn.classList.remove('speaking-pulse');
+      },
+      speak(text, retried = false) {
+        if (AudioFX.muted || !('speechSynthesis' in window)) return;
+        const voices = window.speechSynthesis.getVoices() || [];
+        if (voices.length === 0 && !retried) {
+          setTimeout(() => this.speak(text, true), 150);
+          return;
+        }
+        this.stop();
+        try {
+          const spokenText = String(text).replace(/(^|\s)[Bb]é(?=\s|[.,!?]|$)/g, '$1con').trim();
+          const utter = new SpeechSynthesisUtterance(spokenText);
+          utter.lang = 'vi-VN';
+          utter.rate = 1.04;
+          utter.pitch = 1.0;
+
+          const viVoice = this.findVietnameseVoice();
+          const noteEl = document.getElementById('voice-status-note');
+          if (viVoice) {
+            if (noteEl) noteEl.classList.add('hidden');
+            utter.voice = viVoice;
+            utter.lang = viVoice.lang || 'vi-VN';
+          } else if (voices.length > 0) {
+            if (noteEl) noteEl.classList.remove('hidden');
+            return;
+          } else {
+            if (noteEl) noteEl.classList.remove('hidden');
+            utter.lang = 'vi-VN';
+          }
+
+          const btn = document.getElementById('btn-read-question');
+          utter.onstart = () => { if (btn) btn.classList.add('speaking-pulse'); };
+          utter.onend = () => { if (btn) btn.classList.remove('speaking-pulse'); };
+          utter.onerror = () => { if (btn) btn.classList.remove('speaking-pulse'); };
+
+          window.speechSynthesis.speak(utter);
+        } catch (e) {}
+      }
+    };
+
+    if ('speechSynthesis' in window) {
+      VoiceReader.findVietnameseVoice();
+      if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = () => VoiceReader.findVietnameseVoice();
+      }
+    }
+
+    const confettiCanvas = document.getElementById('confetti-canvas');
+    const cCtx = confettiCanvas.getContext('2d');
+    let confettiPieces = [];
+    let confettiAnimId = null;
+
+    function resizeConfetti() {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeConfetti);
+    resizeConfetti();
+
+    function launchConfetti(count = 55) {
+      const colors = ['#F59E0B', '#10B981', '#38BDF8', '#FB7185', '#A78BFA', '#FACC15'];
+      for (let i = 0; i < count; i++) {
+        confettiPieces.push({
+          x: Math.random() * confettiCanvas.width,
+          y: -15 - Math.random() * 80,
+          w: 8 + Math.random() * 7,
+          h: 6 + Math.random() * 6,
+          vx: (Math.random() - 0.5) * 4,
+          vy: 2.8 + Math.random() * 4,
+          rot: Math.random() * 360,
+          vRot: (Math.random() - 0.5) * 10,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          life: 140 + Math.random() * 60
+        });
+      }
+      if (!confettiAnimId) animateConfetti();
+    }
+
+    function animateConfetti() {
+      cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      confettiPieces = confettiPieces.filter(p => p.life > 0 && p.y < confettiCanvas.height + 30);
+      for (const p of confettiPieces) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.vRot;
+        p.life -= 1;
+        cCtx.save();
+        cCtx.translate(p.x, p.y);
+        cCtx.rotate((p.rot * Math.PI) / 180);
+        cCtx.fillStyle = p.color;
+        cCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        cCtx.restore();
+      }
+      if (confettiPieces.length > 0) {
+        confettiAnimId = requestAnimationFrame(animateConfetti);
+      } else {
+        confettiAnimId = null;
+      }
+    }
+
+    function spawnFloatingStars(el) {
+      const rect = el ? el.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 0, height: 0 };
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const icons = ['⭐', '🌟', '✨', '🎉'];
+      for (let i = 0; i < 6; i++) {
+        const span = document.createElement('span');
+        span.className = 'star-particle text-2xl sm:text-3xl';
+        span.textContent = icons[i % icons.length];
+        span.style.left = `${cx + (Math.random() - 0.5) * 120}px`;
+        span.style.top = `${cy + (Math.random() - 0.5) * 40}px`;
+        document.body.appendChild(span);
+        setTimeout(() => span.remove(), 1000);
+      }
+    }
+
+    // =========================================================
+    // 3. QUESTION BANK (10 QUESTIONS • NUMBER 8 • NUMBER BONDS)
+    // =========================================================
+    const QUESTIONS = [
+      // --- VÒNG 1 ---
+      {
+        id: 1,
+        round: 1,
+        mode: 'split_missing_part',
+        whole: 8,
+        partA: 1,
+        partB: null,
+        answer: 7,
+        options: [6, 7, 5],
+        prompt: 'Số 8 tách thành 1 và mấy?',
+        bondSummary: '8 được tách thành 1 và 7'
+      },
+      {
+        id: 2,
+        round: 1,
+        mode: 'merge_missing_whole',
+        whole: null,
+        partA: 2,
+        partB: 6,
+        answer: 8,
+        options: [7, 8, 6],
+        prompt: 'Gộp 2 và 6 lại thì được số mấy?',
+        bondSummary: 'Gộp 2 và 6 được 8'
+      },
+      {
+        id: 3,
+        round: 1,
+        mode: 'split_missing_part',
+        whole: 8,
+        partA: null,
+        partB: 5,
+        answer: 3,
+        options: [2, 3, 4],
+        prompt: 'Số 8 tách thành mấy và 5?',
+        bondSummary: '8 được tách thành 3 và 5'
+      },
+      {
+        id: 4,
+        round: 1,
+        mode: 'merge_missing_whole',
+        whole: null,
+        partA: 4,
+        partB: 4,
+        answer: 8,
+        options: [7, 8, 6],
+        prompt: 'Gộp 4 và 4 lại thì được số mấy?',
+        bondSummary: 'Gộp 4 và 4 được 8'
+      },
+      {
+        id: 5,
+        round: 1,
+        mode: 'split_missing_part',
+        whole: 8,
+        partA: 2,
+        partB: null,
+        answer: 6,
+        options: [5, 6, 7],
+        prompt: 'Số 8 tách thành 2 và mấy?',
+        bondSummary: '8 được tách thành 2 và 6'
+      },
+
+      // --- VÒNG 2 ---
+      {
+        id: 6,
+        round: 2,
+        mode: 'merge_missing_whole',
+        whole: null,
+        partA: 7,
+        partB: 1,
+        answer: 8,
+        options: [8, 7, 9],
+        prompt: 'Gộp 7 và 1 lại thì được số mấy?',
+        bondSummary: 'Gộp 7 và 1 được 8'
+      },
+      {
+        id: 7,
+        round: 2,
+        mode: 'split_missing_part',
+        whole: 8,
+        partA: 4,
+        partB: null,
+        answer: 4,
+        options: [3, 4, 5],
+        prompt: 'Số 8 tách thành 4 và mấy?',
+        bondSummary: '8 được tách thành 4 và 4'
+      },
+      {
+        id: 8,
+        round: 2,
+        mode: 'merge_missing_whole',
+        whole: null,
+        partA: 3,
+        partB: 5,
+        answer: 8,
+        options: [7, 8, 6],
+        prompt: 'Gộp 3 và 5 lại thì được số mấy?',
+        bondSummary: 'Gộp 3 và 5 được 8'
+      },
+      {
+        id: 9,
+        round: 2,
+        mode: 'split_missing_part',
+        whole: 8,
+        partA: null,
+        partB: 1,
+        answer: 7,
+        options: [6, 7, 5],
+        prompt: 'Số 8 tách thành mấy và 1?',
+        bondSummary: '8 được tách thành 7 và 1'
+      },
+      {
+        id: 10,
+        round: 2,
+        mode: 'split_both_parts',
+        whole: 8,
+        partA: null,
+        partB: null,
+        options: [1, 2, 3, 4, 5, 6, 7],
+        prompt: 'Câu cuối cùng: Con hãy chọn 2 số để tách số 8 thành 2 phần nhé!',
+        bondSummary: '8 được tách thành 2 phần'
+      }
+    ];
+
+    const PRAISES = [
+      'Hoan hô! Con giỏi quá!',
+      'Tuyệt vời! Con tính nhanh quá đi!',
+      'Đúng rồi! Thưởng cho con ngôi sao sáng nè!',
+      'Xuất sắc! Con làm bài thật tuyệt vời!'
+    ];
+
+    const state = {
+      screen: 'home',
+      qIndex: 0,
+      score: 0,
+      correctCount: 0,
+      firstTry: true,
+      answered: false,
+      fillWhole: null,
+      fillPartA: null,
+      fillPartB: null,
+      activeSlot: 'B'
+    };
+
+    const views = {
+      home: document.getElementById('view-home'),
+      round_break: document.getElementById('view-round-break'),
+      game: document.getElementById('view-game'),
+      summary: document.getElementById('view-summary')
+    };
+
+    const btnHomeTop = document.getElementById('btn-home-top');
+    const btnSound = document.getElementById('btn-sound');
+    const soundIcon = document.getElementById('sound-icon');
+    const soundLabel = document.getElementById('sound-label');
+
+    const modalHowTo = document.getElementById('modal-howto');
+    const roundBadge = document.getElementById('round-badge');
+    const questionCounter = document.getElementById('question-counter');
+    const correctCountEl = document.getElementById('correct-count');
+    const scoreCountEl = document.getElementById('score-count');
+    const progressBar = document.getElementById('progress-bar');
+
+    const modePill = document.getElementById('mode-pill');
+    const questionPrompt = document.getElementById('question-prompt');
+    const questionHint = document.getElementById('question-hint');
+    const interactiveStage = document.getElementById('interactive-stage');
+    const btnReadQuestion = document.getElementById('btn-read-question');
+
+    const feedbackBox = document.getElementById('feedback-box');
+    const feedbackEmoji = document.getElementById('feedback-emoji');
+    const feedbackText = document.getElementById('feedback-text');
+    const btnNext = document.getElementById('btn-next');
+
+    function showScreen(name) {
+      VoiceReader.stop();
+      state.screen = name;
+      Object.entries(views).forEach(([key, el]) => {
+        if (key === name) {
+          el.classList.remove('hidden');
+          if (key !== 'home') el.classList.add('flex');
+        } else {
+          el.classList.add('hidden');
+          el.classList.remove('flex');
+        }
+      });
+
+      if (name === 'home') {
+        btnHomeTop.classList.add('hidden');
+        btnHomeTop.classList.remove('flex');
+      } else {
+        btnHomeTop.classList.remove('hidden');
+        btnHomeTop.classList.add('flex');
+      }
+    }
+
+    function resetFeedback() {
+      feedbackBox.className = 'flex-1 w-full rounded-2xl px-4 py-3 font-extrabold text-sm sm:text-base flex items-center gap-2.5 transition-all bg-slate-50 text-slate-600 border-2 border-slate-100';
+      feedbackEmoji.textContent = '🦊';
+      feedbackText.textContent = 'Con hãy điền số vào sơ đồ này nhé!';
+      btnNext.classList.add('hidden');
+    }
+
+    function setCorrectFeedback(customMsg) {
+      const praise = customMsg || PRAISES[Math.floor(Math.random() * PRAISES.length)];
+      feedbackBox.className = 'flex-1 w-full rounded-2xl px-4 py-3 font-extrabold text-sm sm:text-base flex items-center gap-2.5 transition-all bg-emerald-100 text-emerald-800 border-2 border-emerald-400 animate-pop';
+      feedbackEmoji.textContent = '🎉';
+      feedbackText.textContent = praise;
+      btnNext.classList.remove('hidden');
+      btnNext.textContent = state.qIndex === QUESTIONS.length - 1 ? 'Xem kết quả 🏆' : 'Tiếp theo ➜';
+    }
+
+    function setWrongFeedback(customMsg) {
+      feedbackBox.className = 'flex-1 w-full rounded-2xl px-4 py-3 font-extrabold text-sm sm:text-base flex items-center gap-2.5 transition-all bg-rose-50 text-rose-700 border-2 border-rose-300 animate-shake';
+      feedbackEmoji.textContent = '🐰';
+      feedbackText.textContent = customMsg || 'Suýt đúng rồi, con thử tính lại nhé!';
+    }
+
+    function updateHeaderStats() {
+      const q = QUESTIONS[state.qIndex];
+      roundBadge.textContent = q.round === 1 ? 'Vòng 1: Số 8' : 'Vòng 2: Số 8';
+      roundBadge.className = q.round === 1
+        ? 'bg-amber-100 text-amber-800 border border-amber-300 font-black text-xs sm:text-sm px-3 py-1 rounded-full'
+        : 'bg-sky-100 text-sky-800 border border-sky-300 font-black text-xs sm:text-sm px-3 py-1 rounded-full';
+      questionCounter.textContent = `Câu ${state.qIndex + 1} / ${QUESTIONS.length}`;
+      correctCountEl.textContent = state.correctCount;
+      scoreCountEl.textContent = state.score;
+      const pct = ((state.qIndex + (state.answered ? 1 : 0)) / QUESTIONS.length) * 100;
+      progressBar.style.width = `${Math.max(8, pct)}%`;
+    }
+
+    function handleCorrectAnswer(targetEl, bondSummary) {
+      if (state.answered) return;
+      VoiceReader.stop();
+      state.answered = true;
+      state.correctCount += 1;
+      const earned = state.firstTry ? 10 : 5;
+      state.score += earned;
+      const praise = PRAISES[Math.floor(Math.random() * PRAISES.length)];
+      AudioFX.correct();
+      launchConfetti(45);
+      spawnFloatingStars(targetEl);
+      updateHeaderStats();
+      const summaryText = bondSummary ? `${bondSummary}.` : '';
+      setCorrectFeedback(`${praise} ${summaryText} (+${earned} điểm)`);
+      setTimeout(() => {
+        if (state.screen === 'game' && state.answered) {
+          VoiceReader.speak(`${praise} ${summaryText}`);
+        }
+      }, 420);
+    }
+
+    function handleWrongAnswer(targetEl, msg) {
+      if (state.answered) return;
+      state.firstTry = false;
+      const hintMsg = msg || 'Suýt đúng rồi, con thử tính lại nhé!';
+      AudioFX.wrong();
+      if (targetEl) {
+        targetEl.classList.remove('animate-shake');
+        void targetEl.offsetWidth;
+        targetEl.classList.add('animate-shake');
+      }
+      setWrongFeedback(hintMsg);
+      setTimeout(() => {
+        if (state.screen === 'game' && !state.answered) {
+          VoiceReader.speak(hintMsg);
+        }
+      }, 300);
+    }
+
+    function loadQuestion() {
+      const q = QUESTIONS[state.qIndex];
+      state.firstTry = true;
+      state.answered = false;
+      state.fillWhole = q.whole;
+      state.fillPartA = q.partA;
+      state.fillPartB = q.partB;
+
+      if (q.mode === 'merge_missing_whole') {
+        state.activeSlot = 'whole';
+        modePill.textContent = '⬆️ Sơ đồ Gộp số';
+        modePill.className = 'inline-block text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 mb-2';
+        questionHint.textContent = 'Kéo hoặc chạm vào thẻ số để điền vào ô Tổng (?) nhé!';
+      } else if (q.mode === 'split_both_parts') {
+        state.activeSlot = 'A';
+        modePill.textContent = '⬇️ Thử thách Tách 2 phần';
+        modePill.className = 'inline-block text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-purple-100 text-purple-800 mb-2';
+        questionHint.textContent = 'Chọn hoặc kéo 2 số vào 2 ô dưới sao cho gộp lại bằng 8!';
+      } else {
+        state.activeSlot = q.partA === null ? 'A' : 'B';
+        modePill.textContent = '⬇️ Sơ đồ Tách số';
+        modePill.className = 'inline-block text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-amber-100 text-amber-800 mb-2';
+        questionHint.textContent = 'Kéo hoặc chạm vào thẻ số đúng để điền vào ô dấu hỏi (?) nhé!';
+      }
+
+      updateHeaderStats();
+      resetFeedback();
+      questionPrompt.textContent = q.prompt;
+      renderNumberBondStage(q);
+
+      setTimeout(() => VoiceReader.speak(q.prompt), 200);
+    }
+
+    function renderNumberBondStage(q) {
+      interactiveStage.innerHTML = '';
+
+      const isMerge = q.mode === 'merge_missing_whole';
+      const isBoth = q.mode === 'split_both_parts';
+
+      const diagram = document.createElement('div');
+      diagram.id = 'bond-diagram';
+      diagram.className = 'w-full max-w-md bg-gradient-to-b from-amber-50/70 to-sky-50/70 border-2 border-amber-200 rounded-3xl p-4 sm:p-5 flex flex-col items-center shadow-inner';
+
+      const buildNode = (slotKey, fixedVal, currentVal, label, baseColor) => {
+        const isEditable = fixedVal === null;
+        const isActive = isEditable && !state.answered && state.activeSlot === slotKey;
+        const hasVal = currentVal !== null;
+
+        let classes = 'bond-slot w-20 h-20 sm:w-24 sm:h-24 rounded-full flex flex-col items-center justify-center border-4 shadow-md relative ';
+        if (!isEditable) {
+          classes += `${baseColor} text-white border-white`;
+        } else if (state.answered) {
+          classes += 'bg-emerald-500 text-white border-emerald-200 animate-pop';
+        } else if (hasVal) {
+          classes += 'bg-white text-slate-800 border-amber-400 cursor-pointer';
+        } else {
+          classes += 'bg-white/95 text-sky-500 border-dashed border-sky-400 cursor-pointer';
+        }
+
+        if (isActive) classes += ' ring-4 ring-amber-300';
+
+        const display = hasVal ? currentVal : '?';
+        return `
+          <div class="flex flex-col items-center gap-1">
+            <span class="text-[11px] sm:text-xs font-black uppercase tracking-wide text-slate-500">${label}</span>
+            <div id="slot-${slotKey}" data-slot="${slotKey}" data-editable="${isEditable}" class="${classes}">
+              <span class="text-4xl sm:text-5xl font-black leading-none">${display}</span>
+            </div>
+          </div>
+        `;
+      };
+
+      diagram.innerHTML = `
+        ${buildNode('whole', q.whole, state.fillWhole, 'Số tổng', 'bg-gradient-to-b from-amber-400 to-amber-500')}
+
+        <div class="relative w-56 sm:w-64 h-12 sm:h-14 flex items-center justify-center">
+          <svg viewBox="0 0 220 56" class="w-full h-full" fill="none" aria-hidden="true">
+            <path d="M110 2 L44 54" stroke="${isMerge ? '#10B981' : '#F59E0B'}" stroke-width="5" stroke-linecap="round" />
+            <path d="M110 2 L176 54" stroke="${isMerge ? '#10B981' : '#0EA5E9'}" stroke-width="5" stroke-linecap="round" />
+          </svg>
+          <span class="absolute bg-white border-2 border-slate-200 text-xs font-black px-2.5 py-0.5 rounded-full text-slate-600 shadow-xs">
+            ${isMerge ? '⬆️ Gộp' : '⬇️ Tách'}
+          </span>
+        </div>
+
+        <div class="flex items-center justify-center gap-10 sm:gap-16">
+          ${buildNode('A', q.partA, state.fillPartA, 'Phần 1', 'bg-gradient-to-b from-emerald-400 to-emerald-500')}
+          ${buildNode('B', q.partB, state.fillPartB, 'Phần 2', 'bg-gradient-to-b from-sky-400 to-sky-500')}
+        </div>
+      `;
+
+      const optionsWrap = document.createElement('div');
+      optionsWrap.className = 'w-full max-w-md flex flex-col items-center gap-3';
+
+      const gridCols = q.options.length >= 6 ? 'grid-cols-4 sm:grid-cols-7' : (q.options.length === 4 ? 'grid-cols-4' : 'grid-cols-3');
+      const tilesGrid = document.createElement('div');
+      tilesGrid.className = `grid ${gridCols} gap-2.5 sm:gap-3 w-full`;
+
+      q.options.forEach((num) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.draggable = !state.answered;
+        btn.className = 'num-tile bg-white hover:bg-amber-50 border-2 border-amber-300 rounded-2xl py-3 sm:py-3.5 flex items-center justify-center shadow-[0_4px_0_#fcd34d] btn-3d';
+        btn.innerHTML = `<span class="text-3xl sm:text-4xl font-black text-slate-800">${num}</span>`;
+        btn.setAttribute('aria-label', `Số ${num}`);
+
+        const triggerTouch = () => {
+          if (!state.answered) AudioFX.ting(true);
+        };
+        btn.addEventListener('pointerdown', triggerTouch);
+        btn.addEventListener('mousedown', triggerTouch);
+        btn.addEventListener('touchstart', triggerTouch, { passive: true });
+        btn.addEventListener('dragstart', (e) => {
+          triggerTouch();
+          e.dataTransfer.setData('text/plain', String(num));
+        });
+
+        btn.addEventListener('click', () => {
+          if (state.answered) return;
+          applyNumberToSlot(q, state.activeSlot, num, btn);
+        });
+
+        tilesGrid.appendChild(btn);
+      });
+
+      optionsWrap.appendChild(tilesGrid);
+
+      if (isBoth) {
+        const actions = document.createElement('div');
+        actions.className = 'flex gap-3 justify-center mt-1';
+        actions.innerHTML = `
+          <button id="btn-reset-both" type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold text-sm sm:text-base px-4 py-2.5 rounded-xl border-2 border-slate-200 btn-3d">
+            ↺ Chọn lại
+          </button>
+          <button id="btn-check-both" type="button" class="bg-gradient-to-b from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-amber-950 font-black text-base sm:text-lg px-6 py-2.5 rounded-xl shadow-[0_4px_0_#d97706] btn-3d">
+            Kiểm tra ✓
+          </button>
+        `;
+        optionsWrap.appendChild(actions);
+      }
+
+      interactiveStage.appendChild(diagram);
+      interactiveStage.appendChild(optionsWrap);
+
+      ['whole', 'A', 'B'].forEach((slotKey) => {
+        const slotEl = document.getElementById(`slot-${slotKey}`);
+        if (!slotEl || slotEl.dataset.editable !== 'true') return;
+
+        slotEl.addEventListener('click', () => {
+          if (state.answered) return;
+          AudioFX.click();
+          state.activeSlot = slotKey;
+          renderNumberBondStage(q);
+        });
+
+        slotEl.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          if (!state.answered) slotEl.classList.add('drag-over');
+        });
+
+        slotEl.addEventListener('dragleave', () => {
+          slotEl.classList.remove('drag-over');
+        });
+
+        slotEl.addEventListener('drop', (e) => {
+          e.preventDefault();
+          slotEl.classList.remove('drag-over');
+          if (state.answered) return;
+          const val = parseInt(e.dataTransfer.getData('text/plain'), 10);
+          if (!isNaN(val)) {
+            applyNumberToSlot(q, slotKey, val, slotEl);
+          }
+        });
+      });
+
+      if (isBoth) {
+        document.getElementById('btn-reset-both').addEventListener('click', () => {
+          if (state.answered) return;
+          AudioFX.returnPop();
+          state.fillPartA = null;
+          state.fillPartB = null;
+          state.activeSlot = 'A';
+          renderNumberBondStage(q);
+        });
+
+        document.getElementById('btn-check-both').addEventListener('click', () => {
+          if (state.answered) return;
+          if (state.fillPartA === null || state.fillPartB === null) {
+            handleWrongAnswer(diagram, 'Con hãy điền đủ cả 2 ô Phần 1 và Phần 2 nhé!');
+            return;
+          }
+          if (state.fillPartA + state.fillPartB === q.whole) {
+            handleCorrectAnswer(diagram, `${q.whole} được tách thành ${state.fillPartA} và ${state.fillPartB}`);
+            renderNumberBondStage(q);
+          } else {
+            handleWrongAnswer(diagram, `${state.fillPartA} gộp ${state.fillPartB} bằng ${state.fillPartA + state.fillPartB}, chưa bằng 8 đâu. Con chọn lại nhé!`);
+          }
+        });
+      }
+    }
+
+    function applyNumberToSlot(q, slotKey, num, sourceEl) {
+      if (state.answered) return;
+
+      if (q.mode === 'split_both_parts') {
+        AudioFX.pop(slotKey === 'A' ? 1 : 2);
+        if (slotKey === 'A') {
+          state.fillPartA = num;
+          if (state.fillPartB === null) state.activeSlot = 'B';
+        } else {
+          state.fillPartB = num;
+        }
+        renderNumberBondStage(q);
+        return;
+      }
+
+      if (slotKey === 'whole') state.fillWhole = num;
+      else if (slotKey === 'A') state.fillPartA = num;
+      else state.fillPartB = num;
+
+      if (num === q.answer) {
+        AudioFX.pop(2);
+        handleCorrectAnswer(sourceEl || document.getElementById('bond-diagram'), q.bondSummary);
+        renderNumberBondStage(q);
+      } else {
+        if (slotKey === 'whole') state.fillWhole = null;
+        else if (slotKey === 'A') state.fillPartA = null;
+        else state.fillPartB = null;
+        handleWrongAnswer(sourceEl || document.getElementById('bond-diagram'), 'Suýt đúng rồi, con thử tính lại rồi chọn số khác nhé!');
+      }
+    }
+
+    function startGame() {
+      AudioFX.click();
+      state.qIndex = 0;
+      state.score = 0;
+      state.correctCount = 0;
+      showScreen('game');
+      loadQuestion();
+    }
+
+    function nextStep() {
+      AudioFX.click();
+      VoiceReader.stop();
+      if (state.qIndex === 4) {
+        document.getElementById('break-score').textContent = state.score;
+        AudioFX.fanfare();
+        launchConfetti(60);
+        showScreen('round_break');
+        return;
+      }
+
+      if (state.qIndex < QUESTIONS.length - 1) {
+        state.qIndex += 1;
+        loadQuestion();
+      } else {
+        showSummary();
+      }
+    }
+
+    function showSummary() {
+      showScreen('summary');
+      AudioFX.fanfare();
+      launchConfetti(90);
+
+      document.getElementById('final-correct').textContent = state.correctCount;
+      document.getElementById('final-score').textContent = state.score;
+
+      const starsEl = document.getElementById('summary-stars');
+      const msgEl = document.getElementById('summary-message');
+
+      if (state.score >= 85) {
+        starsEl.innerHTML = '<span>⭐</span><span>⭐</span><span>⭐</span>';
+        msgEl.textContent = 'Xuất sắc quá! Con là Siêu Sao Tách Gộp Số 8 rồi đó!';
+      } else if (state.score >= 60) {
+        starsEl.innerHTML = '<span>⭐</span><span>⭐</span><span class="opacity-30">⭐</span>';
+        msgEl.textContent = 'Giỏi lắm! Con đã nắm rất vững sơ đồ tách gộp số 8!';
+      } else {
+        starsEl.innerHTML = '<span>⭐</span><span class="opacity-30">⭐</span><span class="opacity-30">⭐</span>';
+        msgEl.textContent = 'Hoan hô con đã hoàn thành! Chơi thêm lần nữa để đạt 3 sao nhé!';
+      }
+
+      setTimeout(() => {
+        if (state.screen === 'summary') {
+          const conclusion = document.getElementById('conclusion-voice-text').textContent.replace('💡', '');
+          VoiceReader.speak(`Hoan hô con đã hoàn thành! ${msgEl.textContent}. ${conclusion}`);
+        }
+      }, 650);
+    }
+
+    ['pointerdown', 'mousedown', 'touchstart'].forEach((evt) => {
+      document.addEventListener(evt, () => AudioFX.ensure(), { passive: true, capture: true });
+    });
+
+    document.getElementById('btn-start').addEventListener('click', startGame);
+    document.getElementById('btn-replay').addEventListener('click', startGame);
+    btnNext.addEventListener('click', nextStep);
+
+    btnReadQuestion.addEventListener('click', () => {
+      AudioFX.click();
+      const q = QUESTIONS[state.qIndex];
+      if (q) VoiceReader.speak(q.prompt);
+    });
+
+    document.getElementById('btn-continue-round2').addEventListener('click', () => {
+      AudioFX.click();
+      state.qIndex = 5;
+      showScreen('game');
+      loadQuestion();
+    });
+
+    btnHomeTop.addEventListener('click', () => {
+      AudioFX.click();
+      showScreen('home');
+    });
+
+    document.getElementById('btn-summary-home').addEventListener('click', () => {
+      AudioFX.click();
+      showScreen('home');
+    });
+
+    document.getElementById('btn-how-to').addEventListener('click', () => {
+      AudioFX.click();
+      modalHowTo.classList.remove('hidden');
+    });
+    document.getElementById('btn-close-howto').addEventListener('click', () => {
+      AudioFX.click();
+      modalHowTo.classList.add('hidden');
+    });
+    document.getElementById('btn-howto-play').addEventListener('click', () => {
+      modalHowTo.classList.add('hidden');
+      startGame();
+    });
+    modalHowTo.addEventListener('click', (e) => {
+      if (e.target === modalHowTo) modalHowTo.classList.add('hidden');
+    });
+
+    btnSound.addEventListener('click', () => {
+      AudioFX.muted = !AudioFX.muted;
+      soundIcon.textContent = AudioFX.muted ? '🔇' : '🔊';
+      soundLabel.textContent = AudioFX.muted ? 'Âm thanh: Tắt' : 'Âm thanh: Bật';
+      if (AudioFX.muted) {
+        VoiceReader.stop();
+      } else {
+        AudioFX.click();
+      }
+    });
+  </script>
+</body>
+</html>
