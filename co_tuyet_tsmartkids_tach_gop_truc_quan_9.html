@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cô Tuyết Tsmartkids — Đào tạo giáo viên tiền tiểu học thu hút - 0335.822.660 | Vũ Trụ Tách Gộp Phạm Vi 9</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Nunito', 'Inter', sans-serif;
+      background: radial-gradient(circle at 20% 15%, #312E81 0%, #1E1B4B 40%, #0B1026 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Animated Starfield & Nebula */
+    .space-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .nebula-glow {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(60px);
+      opacity: 0.38;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(0.85); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+
+    @keyframes shakeGentle {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-7px); }
+      40% { transform: translateX(7px); }
+      60% { transform: translateX(-5px); }
+      80% { transform: translateX(5px); }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.82); opacity: 0; }
+      70% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes starFly {
+      0% { transform: translateY(0) scale(0.6) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-90px) scale(1.3) rotate(180deg); opacity: 0; }
+    }
+
+    @keyframes pulseSpeak {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.55); }
+      50% { transform: scale(1.04); box-shadow: 0 0 0 8px rgba(56, 189, 248, 0); }
+    }
+
+    .star-dot {
+      position: absolute;
+      background: #FEF9C3;
+      border-radius: 9999px;
+      animation: twinkle var(--dur, 3s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+    }
+
+    .animate-float { animation: floatSlow 3.2s ease-in-out infinite; }
+    .animate-shake { animation: shakeGentle 0.45s ease-in-out; }
+    .animate-pop { animation: popIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .speaking-pulse { animation: pulseSpeak 1s ease-in-out infinite; }
+
+    .star-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 60;
+      animation: starFly 1s ease-out forwards;
+    }
+
+    .toy-card {
+      transition: transform 0.16s ease, box-shadow 0.16s ease;
+      cursor: grab;
+      touch-action: manipulation;
+    }
+    .toy-card:hover { transform: translateY(-3px) scale(1.07); }
+    .toy-card:active { cursor: grabbing; transform: scale(0.94); }
+
+    .drop-zone { transition: transform 0.2s ease, filter 0.2s ease; }
+    .drop-zone.drag-over {
+      transform: scale(1.04);
+      filter: drop-shadow(0 0 18px rgba(250, 204, 21, 0.55));
+    }
+
+    .pod-amber {
+      background: linear-gradient(180deg, #FEF3C7 0%, #FDE68A 100%);
+    }
+    .pod-sky {
+      background: linear-gradient(180deg, #E0F2FE 0%, #BAE6FD 100%);
+    }
+    .pod-emerald {
+      background: linear-gradient(180deg, #D1FAE5 0%, #A7F3D0 100%);
+    }
+
+    .btn-3d { transition: transform 0.12s ease, box-shadow 0.12s ease; }
+    .btn-3d:active { transform: translateY(3px); }
+  </style>
+</head>
+<body class="text-slate-800 antialiased relative">
+  <!-- Decorative Space Background -->
+  <div class="space-bg" aria-hidden="true">
+    <div class="nebula-glow w-72 h-72 bg-purple-500 -top-16 -left-16"></div>
+    <div class="nebula-glow w-80 h-80 bg-sky-500 top-1/3 -right-24"></div>
+    <div class="nebula-glow w-64 h-64 bg-amber-400 bottom-0 left-1/4 opacity-20"></div>
+    <div id="starfield"></div>
+    <!-- Floating decorative planets -->
+    <div class="hidden sm:block absolute top-20 left-8 text-4xl opacity-80 animate-float">🪐</div>
+    <div class="hidden sm:block absolute bottom-16 right-10 text-4xl opacity-80 animate-float" style="animation-delay:1.2s">🚀</div>
+    <div class="hidden sm:block absolute top-1/2 left-5 text-3xl opacity-70 animate-float" style="animation-delay:0.6s">🌙</div>
+  </div>
+
+  <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-50 w-full h-full"></canvas>
+
+  <div id="app" class="relative z-10 max-w-3xl mx-auto px-3 sm:px-6 py-4 sm:py-6 min-h-screen flex flex-col">
+
+    <!-- Top Header -->
+    <header class="flex items-center justify-between gap-2 mb-4">
+      <button id="btn-home-top" type="button" class="hidden items-center gap-1.5 bg-white/95 hover:bg-white border-2 border-amber-300 text-amber-800 font-extrabold px-3 py-2 rounded-2xl shadow-md text-sm sm:text-base btn-3d">
+        <span>🏠</span>
+        <span class="hidden sm:inline">Trang chủ</span>
+      </button>
+
+      <div id="header-brand" class="flex items-center gap-2 bg-white/95 border-2 border-amber-300 px-3 sm:px-4 py-1.5 rounded-2xl shadow-md text-left">
+        <span class="text-xl sm:text-2xl shrink-0">🚀</span>
+        <div class="leading-tight">
+          <div class="font-black text-xs sm:text-base text-indigo-900 tracking-tight">Cô Tuyết Tsmartkids</div>
+          <div class="font-extrabold text-[10px] sm:text-xs text-slate-600">Đào tạo giáo viên tiền tiểu học thu hút - 0335.822.660</div>
+        </div>
+      </div>
+
+      <button id="btn-sound" type="button" class="flex items-center gap-1.5 bg-white/95 hover:bg-white border-2 border-sky-300 text-sky-700 font-extrabold px-3 py-2 rounded-2xl shadow-md text-sm sm:text-base btn-3d" aria-label="Bật hoặc tắt âm thanh">
+        <span id="sound-icon">🔊</span>
+        <span id="sound-label" class="text-xs sm:text-sm">Âm thanh: Bật</span>
+      </button>
+    </header>
+
+    <!-- VIEW 1: HOME SCREEN -->
+    <main id="view-home" class="flex-1 flex flex-col items-center justify-center text-center py-4">
+      <div class="bg-white/95 border-4 border-amber-300 rounded-3xl p-6 sm:p-10 shadow-2xl w-full max-w-xl animate-pop">
+        <div class="flex justify-center gap-3 text-4xl sm:text-5xl mb-4 animate-float">
+          <span>🚀</span><span>🪐</span><span>⭐</span><span>🛸</span>
+        </div>
+
+        <div class="inline-flex flex-wrap items-center justify-center gap-1.5 bg-gradient-to-r from-indigo-100 via-amber-100 to-sky-100 text-indigo-900 font-black text-xs sm:text-sm px-4 py-1.5 rounded-full mb-3 border-2 border-indigo-200 shadow-xs">
+          <span>🎓</span>
+          <span>Cô Tuyết Tsmartkids • Đào tạo giáo viên tiền tiểu học thu hút - 0335.822.660</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl font-black text-indigo-700 mb-3 leading-tight">
+          Vũ Trụ Tách – Gộp Phạm Vi 9
+        </h1>
+
+        <p class="text-slate-600 font-bold text-base sm:text-lg mb-6 leading-relaxed">
+          Bé hãy hóa thân thành phi hành gia nhí, đếm ngôi sao, tên lửa, hành tinh và xếp vào các trạm vũ trụ để khám phá tách – gộp <strong>số lượng 9</strong> nhé!
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-7 text-left">
+          <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3.5 flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-amber-400 text-white font-black text-xl flex items-center justify-center shrink-0 shadow-sm">1</div>
+            <div>
+              <div class="font-black text-amber-800 text-sm sm:text-base">Vòng 1: Khám phá</div>
+              <div class="text-xs sm:text-sm font-bold text-amber-700/80">5 câu • Tách – Gộp lượng 9</div>
+            </div>
+          </div>
+          <div class="bg-indigo-50 border-2 border-indigo-200 rounded-2xl p-3.5 flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-indigo-500 text-white font-black text-xl flex items-center justify-center shrink-0 shadow-sm">2</div>
+            <div>
+              <div class="font-black text-indigo-800 text-sm sm:text-base">Vòng 2: Chinh phục</div>
+              <div class="text-xs sm:text-sm font-bold text-indigo-700/80">5 câu • Đủ 4 cặp số của 9</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <button id="btn-start" type="button" class="flex-1 bg-gradient-to-b from-emerald-400 to-emerald-500 hover:from-emerald-500 hover:to-emerald-600 text-white font-black text-xl px-6 py-4 rounded-2xl shadow-[0_5px_0_#059669] btn-3d flex items-center justify-center gap-2">
+            <span>🚀</span>
+            <span>Bắt đầu chơi</span>
+          </button>
+          <button id="btn-how-to" type="button" class="bg-gradient-to-b from-amber-300 to-amber-400 hover:from-amber-400 hover:to-amber-500 text-amber-950 font-black text-lg px-6 py-4 rounded-2xl shadow-[0_5px_0_#d97706] btn-3d flex items-center justify-center gap-2">
+            <span>💡</span>
+            <span>Cách chơi</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- VIEW 2: ROUND TRANSITION SCREEN -->
+    <section id="view-round-break" class="hidden flex-1 flex-col items-center justify-center text-center py-4">
+      <div class="bg-white/95 border-4 border-sky-300 rounded-3xl p-6 sm:p-10 shadow-2xl w-full max-w-lg animate-pop">
+        <div class="text-6xl mb-3 animate-float">🛸</div>
+        <h2 class="text-2xl sm:text-3xl font-black text-indigo-700 mb-2">
+          Tuyệt vời! Con đã xong Vòng 1!
+        </h2>
+        <p class="text-slate-600 font-bold text-base sm:text-lg mb-5">
+          Con đang có <span id="break-score" class="text-amber-600 font-black">0</span> điểm. Bây giờ mình cùng bay sang <strong>Vòng 2: Chinh phục lượng 9</strong> nhé!
+        </p>
+        <button id="btn-continue-round2" type="button" class="w-full sm:w-auto bg-gradient-to-b from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white font-black text-xl px-8 py-4 rounded-2xl shadow-[0_5px_0_#3730a3] btn-3d">
+          Tiếp tục Vòng 2 🚀
+        </button>
+      </div>
+    </section>
+
+    <!-- VIEW 3: GAMEPLAY SCREEN -->
+    <section id="view-game" class="hidden flex-1 flex flex-col gap-3 sm:gap-4">
+      <div class="bg-white/95 border-2 border-indigo-200 rounded-3xl p-3.5 sm:p-4 shadow-lg">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+          <div class="flex items-center gap-2">
+            <span id="round-badge" class="bg-amber-100 text-amber-800 border border-amber-300 font-black text-xs sm:text-sm px-3 py-1 rounded-full">
+              Vòng 1: Lượng 9
+            </span>
+            <span id="question-counter" class="font-black text-slate-700 text-sm sm:text-base">
+              Câu 1 / 10
+            </span>
+          </div>
+
+          <div class="flex items-center gap-2 sm:gap-3">
+            <div class="bg-emerald-50 border border-emerald-200 text-emerald-700 font-black text-xs sm:text-sm px-3 py-1 rounded-full flex items-center gap-1">
+              <span>✅</span>
+              <span>Đúng: <span id="correct-count">0</span></span>
+            </div>
+            <div class="bg-amber-50 border border-amber-200 text-amber-700 font-black text-xs sm:text-sm px-3 py-1 rounded-full flex items-center gap-1">
+              <span>⭐</span>
+              <span>Điểm: <span id="score-count">0</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full h-4 bg-slate-100 rounded-full overflow-hidden border border-slate-200 p-0.5">
+          <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-400 via-sky-400 to-emerald-400 rounded-full transition-all duration-500" style="width: 10%"></div>
+        </div>
+      </div>
+
+      <div id="question-card" class="bg-white/95 border-4 border-indigo-200 rounded-3xl p-4 sm:p-6 shadow-2xl flex-1 flex flex-col justify-between gap-4">
+        <div class="text-center flex flex-col items-center">
+          <span id="mode-pill" class="inline-block text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 mb-2">
+            Tách vào trạm vũ trụ
+          </span>
+          <h2 id="question-prompt" class="text-lg sm:text-2xl font-black text-slate-800 leading-snug max-w-xl">
+            Con hãy tách 9 ngôi sao: 1 ngôi sao vào Trạm Vàng, 8 ngôi sao vào Trạm Xanh nhé!
+          </h2>
+          <div class="flex flex-col items-center justify-center gap-1 mt-2">
+            <button id="btn-read-question" type="button" class="inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white font-black text-xs sm:text-sm px-4 py-2 rounded-full shadow-[0_3px_0_#0284c7] btn-3d">
+              <span class="text-base">🔊</span>
+              <span>Nghe câu hỏi</span>
+            </button>
+            <p id="voice-status-note" class="hidden text-[11px] sm:text-xs font-bold text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full">
+              Trình duyệt này chưa có sẵn giọng đọc Tiếng Việt — bạn mở bằng Google Chrome để nghe giọng đọc chuẩn nhé!
+            </p>
+          </div>
+          <p id="question-hint" class="text-xs sm:text-sm font-bold text-slate-500 mt-1.5">
+            (Kéo thả hoặc chạm vào hình để đưa vào trạm vũ trụ)
+          </p>
+        </div>
+
+        <div id="interactive-stage" class="flex-1 flex flex-col justify-center gap-4">
+          <!-- Populated by JS -->
+        </div>
+
+        <div id="feedback-area" class="min-h-[76px] flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 border-t-2 border-dashed border-slate-100">
+          <div id="feedback-box" class="flex-1 w-full rounded-2xl px-4 py-3 font-extrabold text-sm sm:text-base flex items-center gap-2.5 transition-all bg-slate-50 text-slate-600 border-2 border-slate-100">
+            <span id="feedback-emoji" class="text-2xl">👩‍🚀</span>
+            <span id="feedback-text">Phi hành gia nhí hãy đếm thật kỹ rồi hoàn thành câu này nhé!</span>
+          </div>
+
+          <button id="btn-next" type="button" class="hidden w-full sm:w-auto shrink-0 bg-gradient-to-b from-emerald-400 to-emerald-500 hover:from-emerald-500 hover:to-emerald-600 text-white font-black text-lg px-7 py-3.5 rounded-2xl shadow-[0_4px_0_#059669] btn-3d animate-pop">
+            Tiếp theo ➜
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 4: SUMMARY SCREEN -->
+    <section id="view-summary" class="hidden flex-1 flex-col items-center justify-center text-center py-4">
+      <div class="bg-white/95 border-4 border-emerald-300 rounded-3xl p-5 sm:p-8 shadow-2xl w-full max-w-2xl animate-pop">
+        <div class="inline-block bg-amber-100 text-amber-800 border border-amber-300 font-black text-xs sm:text-sm px-3.5 py-1 rounded-full mb-2">
+          🌟 Chứng nhận Phi Hành Gia Nhí • Cô Tuyết Tsmartkids
+        </div>
+        <div class="text-5xl sm:text-6xl mb-2 animate-float">🏆</div>
+        <h2 class="text-2xl sm:text-3xl font-black text-emerald-600 mb-1.5">
+          Hoan hô con đã hoàn thành!
+        </h2>
+        <p id="summary-message" class="text-slate-600 font-bold text-sm sm:text-base mb-4">
+          Con đếm và tách gộp số lượng 9 siêu giỏi luôn!
+        </p>
+
+        <div id="summary-stars" class="flex justify-center gap-2 text-3xl sm:text-4xl mb-4">
+          <span>⭐</span><span>⭐</span><span>⭐</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 mb-5 max-w-md mx-auto">
+          <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-3">
+            <div class="text-xs font-extrabold text-emerald-700 mb-0.5">Số câu đúng</div>
+            <div class="text-2xl font-black text-emerald-600"><span id="final-correct">0</span> / 10</div>
+          </div>
+          <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3">
+            <div class="text-xs font-extrabold text-amber-700 mb-0.5">Tổng điểm</div>
+            <div class="text-2xl font-black text-amber-600"><span id="final-score">0</span> ⭐</div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-indigo-50 via-white to-amber-50 border-2 border-indigo-200 rounded-2xl p-4 sm:p-5 text-left mb-6 shadow-xs">
+          <div class="flex items-center gap-2 mb-2.5">
+            <span class="text-xl">🛸</span>
+            <h3 class="font-black text-base sm:text-lg text-indigo-800">Tổng kết tách – gộp số lượng 9</h3>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm font-bold text-slate-700">
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-3">
+              <div class="font-black text-amber-800 mb-1">⭐ 4 cách tách số lượng 9:</div>
+              <p>Tách 9 thành: <strong>1 và 8</strong> • <strong>2 và 7</strong> • <strong>3 và 6</strong> • <strong>4 và 5</strong>.</p>
+            </div>
+            <div class="bg-sky-50 border border-sky-200 rounded-xl p-3">
+              <div class="font-black text-sky-800 mb-1">➕ Gộp lại thành 9:</div>
+              <p>Các cặp <strong>(1, 8)</strong>, <strong>(2, 7)</strong>, <strong>(3, 6)</strong>, <strong>(4, 5)</strong> khi gộp lại đều có tất cả <strong>9</strong>!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <button id="btn-replay" type="button" class="flex-1 bg-gradient-to-b from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-amber-950 font-black text-xl px-6 py-4 rounded-2xl shadow-[0_5px_0_#d97706] btn-3d">
+            🔄 Chơi lại
+          </button>
+          <button id="btn-summary-home" type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-black text-lg px-6 py-4 rounded-2xl border-2 border-slate-200 btn-3d">
+            🏠 Về trang chủ
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="text-center text-xs sm:text-sm font-extrabold text-amber-200/95 pt-4 pb-1">
+      © Cô Tuyết Tsmartkids • Đào tạo giáo viên tiền tiểu học thu hút - 0335.822.660
+    </footer>
+  </div>
+
+  <!-- HOW TO PLAY MODAL -->
+  <div id="modal-howto" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white border-4 border-amber-300 rounded-3xl max-w-md w-full p-6 shadow-2xl animate-pop relative">
+      <button id="btn-close-howto" type="button" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 font-black text-slate-600 flex items-center justify-center" aria-label="Đóng hướng dẫn">
+        ✕
+      </button>
+      <div class="text-center mb-4">
+        <div class="text-4xl mb-1">🚀</div>
+        <h3 class="text-2xl font-black text-indigo-700">Cách chơi Vũ Trụ Số 9</h3>
+      </div>
+
+      <div class="space-y-3 text-sm sm:text-base font-bold text-slate-700">
+        <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3 flex items-start gap-3">
+          <span class="text-2xl shrink-0">🛸</span>
+          <div>
+            <div class="font-black text-amber-800">1. Tách đồ vật vào 2 trạm vũ trụ</div>
+            <p class="text-xs sm:text-sm text-slate-600">Con kéo ngôi sao, tên lửa, hành tinh thả vào Trạm Vàng và Trạm Xanh, hoặc chạm chọn trạm rồi chạm vào từng món.</p>
+          </div>
+        </div>
+        <div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-3 flex items-start gap-3">
+          <span class="text-2xl shrink-0">🔢</span>
+          <div>
+            <div class="font-black text-sky-800">2. Đếm và chọn thẻ số</div>
+            <p class="text-xs sm:text-sm text-slate-600">Chạm vào từng hình để nghe tiếng **"Tinh!"** đếm cho vui, rồi chạm thẻ số có chấm tròn tương ứng.</p>
+          </div>
+        </div>
+        <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-3 flex items-start gap-3">
+          <span class="text-2xl shrink-0">⭐</span>
+          <div>
+            <div class="font-black text-emerald-800">3. Nhận điểm và ngôi sao</div>
+            <p class="text-xs sm:text-sm text-slate-600">Đúng ngay lần đầu được <strong>+10 điểm</strong>. Nếu chưa đúng, con cứ bình tĩnh đếm lại nhé!</p>
+          </div>
+        </div>
+      </div>
+
+      <button id="btn-howto-play" type="button" class="mt-5 w-full bg-gradient-to-b from-emerald-400 to-emerald-500 text-white font-black text-lg py-3.5 rounded-2xl shadow-[0_4px_0_#059669] btn-3d">
+        Con hiểu rồi, bay thôi! 🚀
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Generate twinkling starfield background
+    (function initStarfield() {
+      const sf = document.getElementById('starfield');
+      if (!sf) return;
+      for (let i = 0; i < 48; i++) {
+        const dot = document.createElement('div');
+        const size = 2 + Math.random() * 3.5;
+        dot.className = 'star-dot';
+        dot.style.width = `${size}px`;
+        dot.style.height = `${size}px`;
+        dot.style.left = `${Math.random() * 100}%`;
+        dot.style.top = `${Math.random() * 100}%`;
+        dot.style.setProperty('--dur', `${2 + Math.random() * 3}s`);
+        dot.style.setProperty('--delay', `${Math.random() * 2}s`);
+        sf.appendChild(dot);
+      }
+    })();
+
+    // =========================================================
+    // 1. AUDIO ENGINE (WAV + Web Audio) & VIETNAMESE TTS
+    // =========================================================
+    function makeBellWavUrl(freqs, durationSec = 0.32, volume = 0.65) {
+      const sampleRate = 22050;
+      const numSamples = Math.floor(sampleRate * durationSec);
+      const buffer = new ArrayBuffer(44 + numSamples * 2);
+      const view = new DataView(buffer);
+      const writeStr = (offset, str) => {
+        for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
+      };
+      writeStr(0, 'RIFF');
+      view.setUint32(4, 36 + numSamples * 2, true);
+      writeStr(8, 'WAVE');
+      writeStr(12, 'fmt ');
+      view.setUint32(16, 16, true);
+      view.setUint16(20, 1, true);
+      view.setUint16(22, 1, true);
+      view.setUint32(24, sampleRate, true);
+      view.setUint32(28, sampleRate * 2, true);
+      view.setUint16(32, 2, true);
+      view.setUint16(34, 16, true);
+      writeStr(36, 'data');
+      view.setUint32(40, numSamples * 2, true);
+
+      for (let i = 0; i < numSamples; i++) {
+        const t = i / sampleRate;
+        const env = Math.exp(-t * 9.5) * Math.min(1, t / 0.008);
+        let sample = 0;
+        freqs.forEach((f, idx) => {
+          sample += Math.sin(2 * Math.PI * f * t) * (1 / (idx + 1));
+        });
+        sample = Math.max(-1, Math.min(1, sample * 0.55 * volume * env));
+        view.setInt16(44 + i * 2, sample * 32767, true);
+      }
+      return URL.createObjectURL(new Blob([buffer], { type: 'audio/wav' }));
+    }
+
+    const WAV_SOUNDS = {
+      ting: makeBellWavUrl([1046.5, 1567.98, 2093.0], 0.34, 0.85),
+      pop: makeBellWavUrl([783.99, 1174.66], 0.24, 0.75),
+      ret: makeBellWavUrl([523.25, 392.0], 0.2, 0.65)
+    };
+
+    function playWav(url) {
+      try {
+        const a = new Audio(url);
+        a.volume = 0.9;
+        a.play().catch(() => {});
+      } catch (e) {}
+    }
+
+    const AudioFX = {
+      ctx: null,
+      muted: false,
+      lastTingAt: 0,
+      ensure() {
+        if (!this.ctx) {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (AudioCtx) this.ctx = new AudioCtx();
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          return this.ctx.resume().catch(() => {});
+        }
+        return Promise.resolve();
+      },
+      playTone(freq, duration, type = 'sine', startTimeOffset = 0, volume = 0.28) {
+        if (this.muted) return;
+        const ready = this.ensure();
+        if (!this.ctx) return;
+        const schedule = () => {
+          if (!this.ctx || this.muted) return;
+          const now = this.ctx.currentTime + startTimeOffset;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, now);
+          gain.gain.setValueAtTime(0.001, now);
+          gain.gain.exponentialRampToValueAtTime(volume, now + 0.015);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + duration + 0.02);
+        };
+        if (this.ctx.state === 'suspended') {
+          ready.then(schedule);
+        } else {
+          schedule();
+        }
+      },
+      click() {
+        if (this.muted) return;
+        playWav(WAV_SOUNDS.pop);
+      },
+      ting(debounced = false) {
+        if (this.muted) return;
+        const nowMs = Date.now();
+        if (debounced && nowMs - this.lastTingAt < 120) return;
+        this.lastTingAt = nowMs;
+        playWav(WAV_SOUNDS.ting);
+        this.playTone(1046.5, 0.22, 'sine', 0, 0.35);
+      },
+      pop(step = 0) {
+        if (this.muted) return;
+        playWav(WAV_SOUNDS.pop);
+        const scale = [587.33, 659.25, 783.99, 880.0, 987.77, 1046.5, 1174.66];
+        const base = scale[step % scale.length];
+        this.playTone(base, 0.16, 'triangle', 0, 0.3);
+      },
+      returnPop() {
+        if (this.muted) return;
+        playWav(WAV_SOUNDS.ret);
+      },
+      correct() {
+        this.playTone(523.25, 0.18, 'triangle', 0, 0.28);
+        this.playTone(659.25, 0.18, 'triangle', 0.1, 0.28);
+        this.playTone(783.99, 0.2, 'triangle', 0.2, 0.28);
+        this.playTone(1046.5, 0.4, 'triangle', 0.3, 0.32);
+      },
+      wrong() {
+        this.playTone(260, 0.18, 'sine', 0, 0.24);
+        this.playTone(210, 0.25, 'sine', 0.14, 0.22);
+      },
+      fanfare() {
+        const notes = [523.25, 659.25, 783.99, 1046.5, 783.99, 1046.5];
+        const times = [0, 0.12, 0.24, 0.36, 0.54, 0.68];
+        notes.forEach((n, i) => this.playTone(n, 0.28, 'triangle', times[i], 0.28));
+      }
+    };
+
+    const VoiceReader = {
+      cachedViVoice: null,
+      findVietnameseVoice() {
+        if (!('speechSynthesis' in window)) return null;
+        const voices = window.speechSynthesis.getVoices() || [];
+        if (voices.length === 0) return this.cachedViVoice;
+        const isVi = (v) => {
+          const lang = (v.lang || '').toLowerCase().replace('_', '-');
+          const name = (v.name || '').toLowerCase();
+          return lang === 'vi' || lang.startsWith('vi-') || /vietnam|tiếng việt|linh|hoài my|nam minh/.test(name);
+        };
+        const viVoices = voices.filter(isVi);
+        const preferred =
+          viVoices.find(v => /google|natural|online|linh|hoài my/i.test(v.name)) ||
+          viVoices[0] ||
+          null;
+        if (preferred) this.cachedViVoice = preferred;
+        return preferred;
+      },
+      stop() {
+        if ('speechSynthesis' in window) {
+          try { window.speechSynthesis.cancel(); } catch (e) {}
+        }
+        const btn = document.getElementById('btn-read-question');
+        if (btn) btn.classList.remove('speaking-pulse');
+      },
+      speak(text, retried = false) {
+        if (AudioFX.muted || !('speechSynthesis' in window)) return;
+        const voices = window.speechSynthesis.getVoices() || [];
+        if (voices.length === 0 && !retried) {
+          setTimeout(() => this.speak(text, true), 150);
+          return;
+        }
+        this.stop();
+        try {
+          const spokenText = String(text).replace(/(^|\s)[Bb]é(?=\s|[.,!?]|$)/g, '$1con').trim();
+          const utter = new SpeechSynthesisUtterance(spokenText);
+          utter.lang = 'vi-VN';
+          utter.rate = 1.04;
+          utter.pitch = 1.0;
+
+          const viVoice = this.findVietnameseVoice();
+          const noteEl = document.getElementById('voice-status-note');
+          if (viVoice) {
+            if (noteEl) noteEl.classList.add('hidden');
+            utter.voice = viVoice;
+            utter.lang = viVoice.lang || 'vi-VN';
+          } else if (voices.length > 0) {
+            if (noteEl) noteEl.classList.remove('hidden');
+            return;
+          } else {
+            if (noteEl) noteEl.classList.remove('hidden');
+            utter.lang = 'vi-VN';
+          }
+
+          const btn = document.getElementById('btn-read-question');
+          utter.onstart = () => { if (btn) btn.classList.add('speaking-pulse'); };
+          utter.onend = () => { if (btn) btn.classList.remove('speaking-pulse'); };
+          utter.onerror = () => { if (btn) btn.classList.remove('speaking-pulse'); };
+
+          window.speechSynthesis.speak(utter);
+        } catch (e) {}
+      }
+    };
+
+    if ('speechSynthesis' in window) {
+      VoiceReader.findVietnameseVoice();
+      if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = () => VoiceReader.findVietnameseVoice();
+      }
+    }
+
+    // =========================================================
+    // 2. CONFETTI & STAR BURST
+    // =========================================================
+    const confettiCanvas = document.getElementById('confetti-canvas');
+    const cCtx = confettiCanvas.getContext('2d');
+    let confettiPieces = [];
+    let confettiAnimId = null;
+
+    function resizeConfetti() {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeConfetti);
+    resizeConfetti();
+
+    function launchConfetti(count = 55) {
+      const colors = ['#F59E0B', '#10B981', '#38BDF8', '#FB7185', '#A78BFA', '#FACC15'];
+      for (let i = 0; i < count; i++) {
+        confettiPieces.push({
+          x: Math.random() * confettiCanvas.width,
+          y: -15 - Math.random() * 80,
+          w: 8 + Math.random() * 7,
+          h: 6 + Math.random() * 6,
+          vx: (Math.random() - 0.5) * 4,
+          vy: 2.8 + Math.random() * 4,
+          rot: Math.random() * 360,
+          vRot: (Math.random() - 0.5) * 10,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          life: 140 + Math.random() * 60
+        });
+      }
+      if (!confettiAnimId) animateConfetti();
+    }
+
+    function animateConfetti() {
+      cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      confettiPieces = confettiPieces.filter(p => p.life > 0 && p.y < confettiCanvas.height + 30);
+      for (const p of confettiPieces) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.vRot;
+        p.life -= 1;
+        cCtx.save();
+        cCtx.translate(p.x, p.y);
+        cCtx.rotate((p.rot * Math.PI) / 180);
+        cCtx.fillStyle = p.color;
+        cCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        cCtx.restore();
+      }
+      if (confettiPieces.length > 0) {
+        confettiAnimId = requestAnimationFrame(animateConfetti);
+      } else {
+        confettiAnimId = null;
+      }
+    }
+
+    function spawnFloatingStars(el) {
+      const rect = el ? el.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 0, height: 0 };
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const icons = ['⭐', '🌟', '✨', '🚀'];
+      for (let i = 0; i < 6; i++) {
+        const span = document.createElement('span');
+        span.className = 'star-particle text-2xl sm:text-3xl';
+        span.textContent = icons[i % icons.length];
+        span.style.left = `${cx + (Math.random() - 0.5) * 120}px`;
+        span.style.top = `${cy + (Math.random() - 0.5) * 40}px`;
+        document.body.appendChild(span);
+        setTimeout(() => span.remove(), 1000);
+      }
+    }
+
+    // =========================================================
+    // 3. QUESTION BANK (10 VISUAL SPACE QUESTIONS • RANGE 9)
+    // =========================================================
+    const QUESTIONS = [
+      // --- VÒNG 1 ---
+      {
+        id: 1,
+        round: 1,
+        type: 'split_drag',
+        emoji: '⭐',
+        itemName: 'ngôi sao',
+        total: 9,
+        targetA: 1,
+        targetB: 8,
+        prompt: 'Con hãy tách 9 ngôi sao: 1 ngôi sao vào Trạm Vàng, 8 ngôi sao vào Trạm Xanh nhé!',
+        bondSummary: '9 được tách thành 1 và 8'
+      },
+      {
+        id: 2,
+        round: 1,
+        type: 'merge_choice',
+        emoji: '🚀',
+        itemName: 'tên lửa',
+        partA: 2,
+        partB: 7,
+        answer: 9,
+        options: [8, 9, 7],
+        prompt: 'Gộp 2 tên lửa và 7 tên lửa lại thì có tất cả mấy chiếc tên lửa?',
+        bondSummary: 'Gộp 2 và 7 được 9'
+      },
+      {
+        id: 3,
+        round: 1,
+        type: 'split_choice',
+        emoji: '🪐',
+        itemName: 'hành tinh',
+        total: 9,
+        partA: 3,
+        answer: 6,
+        options: [5, 6, 7],
+        prompt: 'Có 9 hành tinh. Tách 3 hành tinh sang trạm trái, trạm phải còn mấy hành tinh?',
+        bondSummary: '9 được tách thành 3 và 6'
+      },
+      {
+        id: 4,
+        round: 1,
+        type: 'split_drag',
+        emoji: '🛸',
+        itemName: 'đĩa bay',
+        total: 9,
+        targetA: 4,
+        targetB: 5,
+        prompt: 'Con hãy tách 9 chiếc đĩa bay: 4 chiếc vào Trạm Vàng, 5 chiếc vào Trạm Xanh nhé!',
+        bondSummary: '9 được tách thành 4 và 5'
+      },
+      {
+        id: 5,
+        round: 1,
+        type: 'merge_choice',
+        emoji: '🌙',
+        itemName: 'mặt trăng',
+        partA: 8,
+        partB: 1,
+        answer: 9,
+        options: [9, 8, 7],
+        prompt: 'Gộp 8 mặt trăng và 1 mặt trăng lại, con đếm xem có tất cả mấy mặt trăng?',
+        bondSummary: 'Gộp 8 và 1 được 9'
+      },
+
+      // --- VÒNG 2 ---
+      {
+        id: 6,
+        round: 2,
+        type: 'split_drag',
+        emoji: '☄️',
+        itemName: 'sao chổi',
+        total: 9,
+        targetA: 2,
+        targetB: 7,
+        prompt: 'Con hãy tách 9 sao chổi: 2 sao chổi vào Trạm Vàng và 7 sao chổi vào Trạm Xanh nhé!',
+        bondSummary: '9 được tách thành 2 và 7'
+      },
+      {
+        id: 7,
+        round: 2,
+        type: 'merge_choice',
+        emoji: '👾',
+        itemName: 'bạn người ngoài hành tinh',
+        partA: 3,
+        partB: 6,
+        answer: 9,
+        options: [8, 9, 7],
+        prompt: 'Gộp 3 bạn và 6 bạn người ngoài hành tinh lại thì có tất cả mấy bạn?',
+        bondSummary: 'Gộp 3 và 6 được 9'
+      },
+      {
+        id: 8,
+        round: 2,
+        type: 'split_choice',
+        emoji: '👩‍🚀',
+        itemName: 'phi hành gia',
+        total: 9,
+        partA: 5,
+        answer: 4,
+        options: [3, 4, 5],
+        prompt: 'Có 9 phi hành gia. Tách 5 bạn sang trạm trái, trạm phải còn lại mấy bạn?',
+        bondSummary: '9 được tách thành 5 và 4'
+      },
+      {
+        id: 9,
+        round: 2,
+        type: 'split_drag',
+        emoji: '🛰️',
+        itemName: 'vệ tinh',
+        total: 9,
+        targetA: 3,
+        targetB: 6,
+        prompt: 'Con hãy tách 9 vệ tinh: 3 vệ tinh vào Trạm Vàng và 6 vệ tinh vào Trạm Xanh nhé!',
+        bondSummary: '9 được tách thành 3 và 6'
+      },
+      {
+        id: 10,
+        round: 2,
+        type: 'merge_choice',
+        emoji: '🌟',
+        itemName: 'ngôi sao lấp lánh',
+        partA: 5,
+        partB: 4,
+        answer: 9,
+        options: [8, 9, 7],
+        prompt: 'Câu cuối cùng nè! Gộp 5 ngôi sao và 4 ngôi sao lại thì có tất cả mấy ngôi sao?',
+        bondSummary: 'Gộp 5 và 4 được 9'
+      }
+    ];
+
+    const PRAISES = [
+      'Hoan hô! Con giỏi quá!',
+      'Tuyệt vời! Phi hành gia nhí đếm siêu quá đi!',
+      'Đúng rồi! Thưởng cho con ngôi sao sáng nè!',
+      'Xuất sắc! Con làm bài thật tuyệt vời!'
+    ];
+
+    const state = {
+      screen: 'home',
+      qIndex: 0,
+      score: 0,
+      correctCount: 0,
+      firstTry: true,
+      answered: false,
+      poolCount: 0,
+      basketA: 0,
+      basketB: 0,
+      activeBasket: 'A'
+    };
+
+    const views = {
+      home: document.getElementById('view-home'),
+      round_break: document.getElementById('view-round-break'),
+      game: document.getElementById('view-game'),
+      summary: document.getElementById('view-summary')
+    };
+
+    const btnHomeTop = document.getElementById('btn-home-top');
+    const btnSound = document.getElementById('btn-sound');
+    const soundIcon = document.getElementById('sound-icon');
+    const soundLabel = document.getElementById('sound-label');
+
+    const modalHowTo = document.getElementById('modal-howto');
+    const roundBadge = document.getElementById('round-badge');
+    const questionCounter = document.getElementById('question-counter');
+    const correctCountEl = document.getElementById('correct-count');
+    const scoreCountEl = document.getElementById('score-count');
+    const progressBar = document.getElementById('progress-bar');
+
+    const modePill = document.getElementById('mode-pill');
+    const questionPrompt = document.getElementById('question-prompt');
+    const questionHint = document.getElementById('question-hint');
+    const interactiveStage = document.getElementById('interactive-stage');
+    const btnReadQuestion = document.getElementById('btn-read-question');
+
+    const feedbackBox = document.getElementById('feedback-box');
+    const feedbackEmoji = document.getElementById('feedback-emoji');
+    const feedbackText = document.getElementById('feedback-text');
+    const btnNext = document.getElementById('btn-next');
+
+    // Space Pod / UFO Dome SVG top
+    function spaceDomeSVG(domeFill = '#FDE68A', strokeColor = '#D97706') {
+      return `
+        <svg viewBox="0 0 180 38" class="w-32 sm:w-40 h-8 sm:h-9 mx-auto -mb-2 pointer-events-none" fill="none" aria-hidden="true">
+          <path d="M26 36 C34 6, 146 6, 154 36 Z" fill="${domeFill}" fill-opacity="0.45" stroke="${strokeColor}" stroke-width="5" stroke-linejoin="round"/>
+          <circle cx="66" cy="22" r="4" fill="#FFFFFF" fill-opacity="0.8"/>
+          <circle cx="90" cy="17" r="5" fill="#FFFFFF" fill-opacity="0.9"/>
+          <circle cx="114" cy="22" r="4" fill="#FFFFFF" fill-opacity="0.8"/>
+        </svg>
+      `;
+    }
+
+    function showScreen(name) {
+      VoiceReader.stop();
+      state.screen = name;
+      Object.entries(views).forEach(([key, el]) => {
+        if (key === name) {
+          el.classList.remove('hidden');
+          if (key !== 'home') el.classList.add('flex');
+        } else {
+          el.classList.add('hidden');
+          el.classList.remove('flex');
+        }
+      });
+
+      if (name === 'home') {
+        btnHomeTop.classList.add('hidden');
+        btnHomeTop.classList.remove('flex');
+      } else {
+        btnHomeTop.classList.remove('hidden');
+        btnHomeTop.classList.add('flex');
+      }
+    }
+
+    function renderDots(count, colorClass = 'bg-indigo-500') {
+      let dots = '<div class="flex flex-wrap justify-center gap-1 mt-1 max-w-[95px]">';
+      for (let i = 0; i < count; i++) {
+        dots += `<span class="w-2.5 h-2.5 rounded-full ${colorClass} inline-block"></span>`;
+      }
+      dots += '</div>';
+      return dots;
+    }
+
+    function resetFeedback() {
+      feedbackBox.className = 'flex-1 w-full rounded-2xl px-4 py-3 font-extrabold text-sm sm:text-base flex items-center gap-2.5 transition-all bg-slate-50 text-slate-600 border-2 border-slate-100';
+      feedbackEmoji.textContent = '👩‍🚀';
+      feedbackText.textContent = 'Phi hành gia nhí hãy đếm thật kỹ rồi hoàn thành câu này nhé!';
+      btnNext.classList.add('hidden');
+    }
+
+    function setCorrectFeedback(customMsg) {
+      const praise = customMsg || PRAISES[Math.floor(Math.random() * PRAISES.length)];
+      feedbackBox.className = 'flex-1 w-full rounded-2xl px-4 py-3 font-extrabold text-sm sm:text-base flex items-center gap-2.5 transition-all bg-emerald-100 text-emerald-800 border-2 border-emerald-400 animate-pop';
+      feedbackEmoji.textContent = '🎉';
+      feedbackText.textContent = praise;
+      btnNext.classList.remove('hidden');
+      btnNext.textContent = state.qIndex === QUESTIONS.length - 1 ? 'Xem kết quả 🏆' : 'Tiếp theo ➜';
+    }
+
+    function setWrongFeedback(customMsg) {
+      feedbackBox.className = 'flex-1 w-full rounded-2xl px-4 py-3 font-extrabold text-sm sm:text-base flex items-center gap-2.5 transition-all bg-rose-50 text-rose-700 border-2 border-rose-300 animate-shake';
+      feedbackEmoji.textContent = '👽';
+      feedbackText.textContent = customMsg || 'Suýt đúng rồi, con thử đếm lại nhé!';
+    }
+
+    function updateHeaderStats() {
+      const q = QUESTIONS[state.qIndex];
+      roundBadge.textContent = q.round === 1 ? 'Vòng 1: Lượng 9' : 'Vòng 2: Lượng 9';
+      roundBadge.className = q.round === 1
+        ? 'bg-amber-100 text-amber-800 border border-amber-300 font-black text-xs sm:text-sm px-3 py-1 rounded-full'
+        : 'bg-indigo-100 text-indigo-800 border border-indigo-300 font-black text-xs sm:text-sm px-3 py-1 rounded-full';
+      questionCounter.textContent = `Câu ${state.qIndex + 1} / ${QUESTIONS.length}`;
+      correctCountEl.textContent = state.correctCount;
+      scoreCountEl.textContent = state.score;
+      const pct = ((state.qIndex + (state.answered ? 1 : 0)) / QUESTIONS.length) * 100;
+      progressBar.style.width = `${Math.max(8, pct)}%`;
+    }
+
+    function handleCorrectAnswer(targetEl, bondSummary) {
+      if (state.answered) return;
+      VoiceReader.stop();
+      state.answered = true;
+      state.correctCount += 1;
+      const earned = state.firstTry ? 10 : 5;
+      state.score += earned;
+      const praise = PRAISES[Math.floor(Math.random() * PRAISES.length)];
+      AudioFX.correct();
+      launchConfetti(45);
+      spawnFloatingStars(targetEl);
+      updateHeaderStats();
+      const summaryText = bondSummary ? `${bondSummary}.` : '';
+      setCorrectFeedback(`${praise} ${summaryText} (+${earned} điểm)`);
+      setTimeout(() => {
+        if (state.screen === 'game' && state.answered) {
+          VoiceReader.speak(`${praise} ${summaryText}`);
+        }
+      }, 420);
+    }
+
+    function handleWrongAnswer(targetEl, msg) {
+      if (state.answered) return;
+      state.firstTry = false;
+      const hintMsg = msg || 'Suýt đúng rồi, con thử đếm lại nhé!';
+      AudioFX.wrong();
+      if (targetEl) {
+        targetEl.classList.remove('animate-shake');
+        void targetEl.offsetWidth;
+        targetEl.classList.add('animate-shake');
+      }
+      setWrongFeedback(hintMsg);
+      setTimeout(() => {
+        if (state.screen === 'game' && !state.answered) {
+          VoiceReader.speak(hintMsg);
+        }
+      }, 300);
+    }
+
+    function loadQuestion() {
+      const q = QUESTIONS[state.qIndex];
+      state.firstTry = true;
+      state.answered = false;
+      state.poolCount = q.total || 0;
+      state.basketA = 0;
+      state.basketB = 0;
+      state.activeBasket = 'A';
+
+      updateHeaderStats();
+      resetFeedback();
+      questionPrompt.textContent = q.prompt;
+
+      if (q.type === 'split_drag') {
+        modePill.textContent = '✋ Kéo thả tách vào trạm vũ trụ';
+        modePill.className = 'inline-block text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-amber-100 text-amber-800 mb-2';
+        questionHint.textContent = 'Kéo đồ vật thả vào 2 trạm vũ trụ, hoặc chạm chọn trạm rồi chạm vào từng món đồ!';
+        renderSplitDrag(q);
+      } else if (q.type === 'merge_choice') {
+        modePill.textContent = '➕ Gộp trạm & chọn số';
+        modePill.className = 'inline-block text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 mb-2';
+        questionHint.textContent = 'Đếm số lượng trong cả hai trạm rồi chạm vào thẻ số đúng bên dưới nhé!';
+        renderMergeChoice(q);
+      } else if (q.type === 'split_choice') {
+        modePill.textContent = '🔍 Tách trạm & tìm số';
+        modePill.className = 'inline-block text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 mb-2';
+        questionHint.textContent = 'Đếm số lượng còn lại và chạm vào thẻ số đúng nhé!';
+        renderSplitChoice(q);
+      }
+
+      setTimeout(() => VoiceReader.speak(q.prompt), 200);
+    }
+
+    function renderSplitDrag(q) {
+      interactiveStage.innerHTML = '';
+
+      const poolWrap = document.createElement('div');
+      poolWrap.className = 'bg-indigo-950/90 border-2 border-dashed border-amber-300 rounded-3xl p-3 sm:p-4 text-center shadow-inner';
+      poolWrap.innerHTML = `
+        <div class="text-xs sm:text-sm font-extrabold text-amber-200 mb-2">
+          🌌 Khoang Vũ Trụ (Còn lại: <span id="pool-rem" class="text-amber-400 font-black">${state.poolCount}</span>)
+        </div>
+        <div id="pool-items" class="flex flex-wrap justify-center gap-2 min-h-[54px] items-center"></div>
+      `;
+
+      const basketsGrid = document.createElement('div');
+      basketsGrid.className = 'grid grid-cols-2 gap-3 sm:gap-5 items-end';
+
+      const makePod = (id, title, target, domeFill, strokeColor, podClass, rimClass, bodyBorder, badgeBg) => {
+        const wrapper = document.createElement('div');
+        wrapper.id = `basket-${id}`;
+        wrapper.dataset.basket = id;
+        wrapper.className = 'drop-zone flex flex-col items-center cursor-pointer group';
+        wrapper.innerHTML = `
+          ${spaceDomeSVG(domeFill, strokeColor)}
+          <div class="w-[95%] h-3.5 ${rimClass} rounded-full border-2 ${bodyBorder} shadow-xs z-10 -mb-1.5"></div>
+          <div id="basket-${id}-body" class="w-full ${podClass} border-4 ${bodyBorder} rounded-t-2xl rounded-b-[42px] pt-3.5 pb-3 px-2.5 sm:px-3.5 shadow-md flex flex-col items-center justify-between min-h-[155px] transition-all">
+            <div class="w-full flex items-center justify-between gap-1 bg-white/85 rounded-full px-2.5 py-1 border border-white">
+              <span class="font-black text-xs sm:text-sm text-slate-700">${title}</span>
+              <span class="${badgeBg} font-black text-xs px-2 py-0.5 rounded-full">Cần: ${target}</span>
+            </div>
+            <div id="basket-${id}-items" class="flex flex-wrap justify-center gap-1.5 my-2 flex-1 items-center"></div>
+            <div class="text-xs sm:text-sm font-black text-slate-700 bg-white/95 px-3 py-1 rounded-full border border-slate-200 shadow-xs">
+              Đang có: <span id="basket-${id}-count" class="text-base text-indigo-700">0</span>
+            </div>
+          </div>
+        `;
+        return wrapper;
+      };
+
+      const basketAEl = makePod('A', '🛸 Trạm Vàng', q.targetA, '#FDE68A', '#D97706', 'pod-amber', 'bg-amber-300', 'border-amber-500', 'bg-amber-200 text-amber-950');
+      const basketBEl = makePod('B', '🛸 Trạm Xanh', q.targetB, '#BAE6FD', '#0284C7', 'pod-sky', 'bg-sky-300', 'border-sky-500', 'bg-sky-200 text-sky-950');
+
+      basketsGrid.appendChild(basketAEl);
+      basketsGrid.appendChild(basketBEl);
+
+      const actionRow = document.createElement('div');
+      actionRow.className = 'flex justify-center gap-3 mt-1';
+      actionRow.innerHTML = `
+        <button id="btn-reset-split" type="button" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold text-sm sm:text-base px-4 py-2.5 rounded-xl border-2 border-slate-200 btn-3d">
+          ↺ Xếp lại
+        </button>
+        <button id="btn-check-split" type="button" class="bg-gradient-to-b from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-amber-950 font-black text-base sm:text-lg px-6 py-2.5 rounded-xl shadow-[0_4px_0_#d97706] btn-3d">
+          Kiểm tra ✓
+        </button>
+      `;
+
+      interactiveStage.appendChild(poolWrap);
+      interactiveStage.appendChild(basketsGrid);
+      interactiveStage.appendChild(actionRow);
+
+      const syncSplitUI = () => {
+        const poolItems = document.getElementById('pool-items');
+        const poolRem = document.getElementById('pool-rem');
+        const bAItems = document.getElementById('basket-A-items');
+        const bBItems = document.getElementById('basket-B-items');
+        const bACount = document.getElementById('basket-A-count');
+        const bBCount = document.getElementById('basket-B-count');
+        const bABody = document.getElementById('basket-A-body');
+        const bBBody = document.getElementById('basket-B-body');
+
+        poolRem.textContent = state.poolCount;
+        bACount.textContent = state.basketA;
+        bBCount.textContent = state.basketB;
+
+        if (!state.answered) {
+          bABody.classList.toggle('ring-4', state.activeBasket === 'A');
+          bABody.classList.toggle('ring-amber-300', state.activeBasket === 'A');
+          bBBody.classList.toggle('ring-4', state.activeBasket === 'B');
+          bBBody.classList.toggle('ring-sky-300', state.activeBasket === 'B');
+        }
+
+        poolItems.innerHTML = '';
+        for (let i = 0; i < state.poolCount; i++) {
+          const item = document.createElement('button');
+          item.type = 'button';
+          item.draggable = !state.answered;
+          item.className = 'toy-card w-11 h-11 sm:w-12 sm:h-12 bg-indigo-900/80 border-2 border-amber-300 rounded-2xl shadow-sm text-2xl sm:text-3xl flex items-center justify-center';
+          item.textContent = q.emoji;
+          item.setAttribute('aria-label', q.itemName);
+
+          const triggerTouchSound = () => {
+            if (!state.answered) AudioFX.ting(true);
+          };
+          item.addEventListener('pointerdown', triggerTouchSound);
+          item.addEventListener('mousedown', triggerTouchSound);
+          item.addEventListener('touchstart', triggerTouchSound, { passive: true });
+          item.addEventListener('dragstart', (e) => {
+            triggerTouchSound();
+            e.dataTransfer.setData('text/plain', 'pool');
+          });
+          item.addEventListener('click', () => {
+            if (state.answered || state.poolCount <= 0) return;
+            state.poolCount -= 1;
+            if (state.activeBasket === 'A') {
+              state.basketA += 1;
+              AudioFX.pop(state.basketA - 1);
+            } else {
+              state.basketB += 1;
+              AudioFX.pop(state.basketB - 1);
+            }
+            syncSplitUI();
+          });
+          poolItems.appendChild(item);
+        }
+        if (state.poolCount === 0) {
+          poolItems.innerHTML = '<span class="text-xs sm:text-sm font-bold text-emerald-300">Đã xếp hết vào trạm rồi! Bấm "Kiểm tra" nhé 🚀</span>';
+        }
+
+        bAItems.innerHTML = '';
+        for (let i = 0; i < state.basketA; i++) {
+          const item = document.createElement('button');
+          item.type = 'button';
+          item.className = 'toy-card w-10 h-10 bg-white border-2 border-amber-400 rounded-full shadow-xs text-xl sm:text-2xl flex items-center justify-center animate-pop';
+          item.textContent = q.emoji;
+          item.title = 'Chạm để trả lại khoang';
+          item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (state.answered) return;
+            AudioFX.returnPop();
+            state.basketA -= 1;
+            state.poolCount += 1;
+            syncSplitUI();
+          });
+          bAItems.appendChild(item);
+        }
+
+        bBItems.innerHTML = '';
+        for (let i = 0; i < state.basketB; i++) {
+          const item = document.createElement('button');
+          item.type = 'button';
+          item.className = 'toy-card w-10 h-10 bg-white border-2 border-sky-400 rounded-full shadow-xs text-xl sm:text-2xl flex items-center justify-center animate-pop';
+          item.textContent = q.emoji;
+          item.title = 'Chạm để trả lại khoang';
+          item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (state.answered) return;
+            AudioFX.returnPop();
+            state.basketB -= 1;
+            state.poolCount += 1;
+            syncSplitUI();
+          });
+          bBItems.appendChild(item);
+        }
+      };
+
+      [basketAEl, basketBEl].forEach((bEl) => {
+        const bId = bEl.dataset.basket;
+        bEl.addEventListener('click', () => {
+          if (state.answered) return;
+          AudioFX.click();
+          state.activeBasket = bId;
+          syncSplitUI();
+        });
+        bEl.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          if (!state.answered) bEl.classList.add('drag-over');
+        });
+        bEl.addEventListener('dragleave', () => {
+          bEl.classList.remove('drag-over');
+        });
+        bEl.addEventListener('drop', (e) => {
+          e.preventDefault();
+          bEl.classList.remove('drag-over');
+          if (state.answered || state.poolCount <= 0) return;
+          state.poolCount -= 1;
+          if (bId === 'A') {
+            state.basketA += 1;
+            AudioFX.pop(state.basketA - 1);
+          } else {
+            state.basketB += 1;
+            AudioFX.pop(state.basketB - 1);
+          }
+          state.activeBasket = bId;
+          syncSplitUI();
+        });
+      });
+
+      document.getElementById('btn-reset-split').addEventListener('click', () => {
+        if (state.answered) return;
+        AudioFX.click();
+        state.poolCount = q.total;
+        state.basketA = 0;
+        state.basketB = 0;
+        syncSplitUI();
+      });
+
+      document.getElementById('btn-check-split').addEventListener('click', () => {
+        if (state.answered) return;
+        if (state.poolCount > 0) {
+          handleWrongAnswer(poolWrap, 'Con vẫn còn đồ vật ở khoang trên, hãy xếp hết vào 2 trạm nhé!');
+          return;
+        }
+        if (state.basketA === q.targetA && state.basketB === q.targetB) {
+          const bABody = document.getElementById('basket-A-body');
+          const bBBody = document.getElementById('basket-B-body');
+          bABody.className = 'w-full pod-emerald border-4 border-emerald-500 rounded-t-2xl rounded-b-[42px] pt-3.5 pb-3 px-2.5 sm:px-3.5 shadow-md flex flex-col items-center justify-between min-h-[155px] transition-all';
+          bBBody.className = 'w-full pod-emerald border-4 border-emerald-500 rounded-t-2xl rounded-b-[42px] pt-3.5 pb-3 px-2.5 sm:px-3.5 shadow-md flex flex-col items-center justify-between min-h-[155px] transition-all';
+          handleCorrectAnswer(basketsGrid, q.bondSummary);
+        } else {
+          handleWrongAnswer(basketsGrid, `Suýt đúng rồi! Trạm Vàng cần ${q.targetA} và Trạm Xanh cần ${q.targetB}. Con đếm lại nhé!`);
+        }
+      });
+
+      syncSplitUI();
+    }
+
+    function renderMergeChoice(q) {
+      interactiveStage.innerHTML = '';
+
+      const visualRow = document.createElement('div');
+      visualRow.className = 'flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4';
+
+      const makePodGroup = (count, domeFill, strokeColor, podClass, rimClass, borderClass, label) => {
+        let itemsHtml = '';
+        for (let i = 0; i < count; i++) {
+          itemsHtml += `<button type="button" onclick="AudioFX.pop(${i}); this.classList.remove('animate-pop'); void this.offsetWidth; this.classList.add('animate-pop');" class="toy-card text-2xl sm:text-3xl inline-block drop-shadow-xs focus:outline-none" aria-label="Đếm ${q.itemName}">${q.emoji}</button>`;
+        }
+        return `
+          <div class="flex flex-col items-center flex-1 max-w-[230px] min-w-[145px] w-full">
+            ${spaceDomeSVG(domeFill, strokeColor)}
+            <div class="w-[94%] h-3 ${rimClass} rounded-full border-2 ${borderClass} z-10 -mb-1.5"></div>
+            <div class="w-full ${podClass} border-4 ${borderClass} rounded-t-2xl rounded-b-[34px] pt-3 pb-3 px-3 text-center shadow-sm">
+              <div class="text-xs font-extrabold text-slate-700 bg-white/85 rounded-full px-2.5 py-0.5 inline-block mb-2">${label}: <span class="text-sm font-black text-slate-900">${count}</span></div>
+              <div class="flex flex-wrap justify-center gap-1.5">${itemsHtml}</div>
+            </div>
+          </div>
+        `;
+      };
+
+      visualRow.innerHTML = `
+        ${makePodGroup(q.partA, '#FDE68A', '#D97706', 'pod-amber', 'bg-amber-300', 'border-amber-500', 'Trạm 1')}
+        <div class="w-11 h-11 rounded-full bg-emerald-100 border-2 border-emerald-400 text-emerald-700 font-black text-2xl flex items-center justify-center shrink-0 shadow-xs">+</div>
+        ${makePodGroup(q.partB, '#BAE6FD', '#0284C7', 'pod-sky', 'bg-sky-300', 'border-sky-500', 'Trạm 2')}
+      `;
+
+      const optionsRow = renderChoiceButtons(q);
+      interactiveStage.appendChild(visualRow);
+      interactiveStage.appendChild(optionsRow);
+    }
+
+    function renderSplitChoice(q) {
+      interactiveStage.innerHTML = '';
+
+      const remaining = q.total - q.partA;
+      let totalHtml = '';
+      for (let i = 0; i < q.total; i++) {
+        totalHtml += `<button type="button" onclick="AudioFX.ting(); this.classList.remove('animate-pop'); void this.offsetWidth; this.classList.add('animate-pop');" class="toy-card text-2xl sm:text-3xl focus:outline-none" aria-label="Đếm ${q.itemName}">${q.emoji}</button>`;
+      }
+
+      let partAHtml = '';
+      for (let i = 0; i < q.partA; i++) {
+        partAHtml += `<button type="button" onclick="AudioFX.pop(${i}); this.classList.remove('animate-pop'); void this.offsetWidth; this.classList.add('animate-pop');" class="toy-card text-2xl sm:text-3xl focus:outline-none" aria-label="Đếm ${q.itemName}">${q.emoji}</button>`;
+      }
+
+      let hiddenHtml = '';
+      for (let i = 0; i < remaining; i++) {
+        hiddenHtml += `<span class="w-8 h-8 rounded-full bg-white/90 border-2 border-dashed border-sky-500 text-sky-600 font-black flex items-center justify-center text-base">?</span>`;
+      }
+
+      const board = document.createElement('div');
+      board.className = 'flex flex-col gap-3 items-center';
+      board.innerHTML = `
+        <div class="bg-indigo-950/90 border-2 border-amber-300 rounded-3xl px-4 py-3 w-full max-w-md text-center">
+          <div class="text-xs sm:text-sm font-extrabold text-amber-200 mb-1.5">🌌 Tổng cộng có ${q.total} ${q.itemName}</div>
+          <div class="flex flex-wrap justify-center gap-1.5">${totalHtml}</div>
+        </div>
+        <div class="text-lg font-black text-indigo-400">⬇️ Tách vào 2 trạm ⬇️</div>
+        <div class="grid grid-cols-2 gap-3 w-full max-w-md items-end">
+          <div class="flex flex-col items-center">
+            ${spaceDomeSVG('#A7F3D0', '#059669')}
+            <div class="w-[94%] h-3 bg-emerald-300 rounded-full border-2 border-emerald-500 z-10 -mb-1.5"></div>
+            <div class="w-full pod-emerald border-4 border-emerald-500 rounded-t-2xl rounded-b-[34px] pt-3 pb-3 px-2.5 text-center shadow-sm">
+              <div class="text-xs font-extrabold text-emerald-900 bg-white/85 rounded-full px-2.5 py-0.5 inline-block mb-1.5">Trạm trái: <span class="text-sm font-black">${q.partA}</span></div>
+              <div class="flex flex-wrap justify-center gap-1">${partAHtml}</div>
+            </div>
+          </div>
+          <div class="flex flex-col items-center">
+            ${spaceDomeSVG('#BAE6FD', '#0284C7')}
+            <div class="w-[94%] h-3 bg-sky-300 rounded-full border-2 border-sky-500 z-10 -mb-1.5"></div>
+            <div class="w-full pod-sky border-4 border-sky-500 rounded-t-2xl rounded-b-[34px] pt-3 pb-3 px-2.5 text-center shadow-sm">
+              <div class="text-xs font-extrabold text-sky-900 bg-white/85 rounded-full px-2.5 py-0.5 inline-block mb-1.5">Trạm phải: <span class="text-sm font-black">?</span></div>
+              <div class="flex flex-wrap justify-center gap-1.5">${hiddenHtml}</div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const optionsRow = renderChoiceButtons(q);
+      interactiveStage.appendChild(board);
+      interactiveStage.appendChild(optionsRow);
+    }
+
+    function renderChoiceButtons(q) {
+      const grid = document.createElement('div');
+      grid.className = 'grid grid-cols-3 gap-3 max-w-md mx-auto w-full mt-2';
+
+      q.options.forEach((opt) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'bg-white hover:bg-amber-50 border-2 border-indigo-300 rounded-2xl py-3 px-2 flex flex-col items-center justify-center shadow-[0_4px_0_#a5b4fc] btn-3d transition-colors';
+        btn.innerHTML = `
+          <span class="text-3xl sm:text-4xl font-black text-slate-800">${opt}</span>
+          ${renderDots(opt, 'bg-indigo-500')}
+        `;
+
+        btn.addEventListener('click', () => {
+          if (state.answered) return;
+          if (opt === q.answer) {
+            btn.className = 'bg-emerald-500 border-2 border-emerald-600 text-white rounded-2xl py-3 px-2 flex flex-col items-center justify-center shadow-[0_4px_0_#059669] btn-3d animate-pop';
+            btn.innerHTML = `
+              <span class="text-3xl sm:text-4xl font-black text-white">${opt}</span>
+              ${renderDots(opt, 'bg-white')}
+            `;
+            handleCorrectAnswer(btn, q.bondSummary);
+          } else {
+            btn.classList.add('border-rose-400', 'bg-rose-50');
+            handleWrongAnswer(btn, 'Suýt đúng rồi, con thử đếm lại rồi chọn số khác nhé!');
+          }
+        });
+        grid.appendChild(btn);
+      });
+
+      return grid;
+    }
+
+    // =========================================================
+    // 8. GAME FLOW
+    // =========================================================
+    function startGame() {
+      AudioFX.click();
+      state.qIndex = 0;
+      state.score = 0;
+      state.correctCount = 0;
+      showScreen('game');
+      loadQuestion();
+    }
+
+    function nextStep() {
+      AudioFX.click();
+      VoiceReader.stop();
+      if (state.qIndex === 4) {
+        document.getElementById('break-score').textContent = state.score;
+        AudioFX.fanfare();
+        launchConfetti(60);
+        showScreen('round_break');
+        return;
+      }
+
+      if (state.qIndex < QUESTIONS.length - 1) {
+        state.qIndex += 1;
+        loadQuestion();
+      } else {
+        showSummary();
+      }
+    }
+
+    function showSummary() {
+      showScreen('summary');
+      AudioFX.fanfare();
+      launchConfetti(90);
+
+      document.getElementById('final-correct').textContent = state.correctCount;
+      document.getElementById('final-score').textContent = state.score;
+
+      const starsEl = document.getElementById('summary-stars');
+      const msgEl = document.getElementById('summary-message');
+
+      if (state.score >= 85) {
+        starsEl.innerHTML = '<span>⭐</span><span>⭐</span><span>⭐</span>';
+        msgEl.textContent = 'Xuất sắc quá! Con là Phi Hành Gia Siêu Sao Lượng 9 rồi đó!';
+      } else if (state.score >= 60) {
+        starsEl.innerHTML = '<span>⭐</span><span>⭐</span><span class="opacity-30">⭐</span>';
+        msgEl.textContent = 'Giỏi lắm! Con đã nắm rất vững các cách tách gộp số lượng 9!';
+      } else {
+        starsEl.innerHTML = '<span>⭐</span><span class="opacity-30">⭐</span><span class="opacity-30">⭐</span>';
+        msgEl.textContent = 'Hoan hô con đã hoàn thành! Chơi thêm lần nữa để đạt 3 sao nhé!';
+      }
+
+      setTimeout(() => {
+        if (state.screen === 'summary') {
+          VoiceReader.speak(`Hoan hô con đã hoàn thành! ${msgEl.textContent}`);
+        }
+      }, 650);
+    }
+
+    ['pointerdown', 'mousedown', 'touchstart'].forEach((evt) => {
+      document.addEventListener(evt, () => AudioFX.ensure(), { passive: true, capture: true });
+    });
+
+    document.getElementById('btn-start').addEventListener('click', startGame);
+    document.getElementById('btn-replay').addEventListener('click', startGame);
+    btnNext.addEventListener('click', nextStep);
+
+    btnReadQuestion.addEventListener('click', () => {
+      AudioFX.click();
+      const q = QUESTIONS[state.qIndex];
+      if (q) VoiceReader.speak(q.prompt);
+    });
+
+    document.getElementById('btn-continue-round2').addEventListener('click', () => {
+      AudioFX.click();
+      state.qIndex = 5;
+      showScreen('game');
+      loadQuestion();
+    });
+
+    btnHomeTop.addEventListener('click', () => {
+      AudioFX.click();
+      showScreen('home');
+    });
+
+    document.getElementById('btn-summary-home').addEventListener('click', () => {
+      AudioFX.click();
+      showScreen('home');
+    });
+
+    document.getElementById('btn-how-to').addEventListener('click', () => {
+      AudioFX.click();
+      modalHowTo.classList.remove('hidden');
+    });
+    document.getElementById('btn-close-howto').addEventListener('click', () => {
+      AudioFX.click();
+      modalHowTo.classList.add('hidden');
+    });
+    document.getElementById('btn-howto-play').addEventListener('click', () => {
+      modalHowTo.classList.add('hidden');
+      startGame();
+    });
+    modalHowTo.addEventListener('click', (e) => {
+      if (e.target === modalHowTo) modalHowTo.classList.add('hidden');
+    });
+
+    btnSound.addEventListener('click', () => {
+      AudioFX.muted = !AudioFX.muted;
+      soundIcon.textContent = AudioFX.muted ? '🔇' : '🔊';
+      soundLabel.textContent = AudioFX.muted ? 'Âm thanh: Tắt' : 'Âm thanh: Bật';
+      if (AudioFX.muted) {
+        VoiceReader.stop();
+      } else {
+        AudioFX.click();
+      }
+    });
+  </script>
+</body>
+</html>
